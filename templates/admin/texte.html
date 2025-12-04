@@ -1,0 +1,494 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Contenus texte{% endblock %}
+
+{% block page_title %}Gestion des contenus texte{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+  <p class="text-gray-600">Modifiez les textes des pages informatives de votre site</p>
+</div>
+
+<!-- Liste des pages éditables -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <!-- CGV -->
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="cgv">
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">Conditions Générales de Vente</h3>
+            <p class="text-sm text-gray-500">Dernière modification : 15/03/2024</p>
+          </div>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <p class="text-sm text-gray-600">Page juridique définissant les conditions de vente et d'utilisation du site</p>
+    </div>
+  </div>
+
+  <!-- Politique de confidentialité -->
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="confidentialite">
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">Politique de confidentialité</h3>
+            <p class="text-sm text-gray-500">Dernière modification : 15/03/2024</p>
+          </div>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <p class="text-sm text-gray-600">Politique de protection des données personnelles (RGPD)</p>
+    </div>
+  </div>
+
+  <!-- À propos -->
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="a-propos">
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">À propos</h3>
+            <p class="text-sm text-gray-500">Dernière modification : 12/03/2024</p>
+          </div>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <p class="text-sm text-gray-600">Histoire de la marque, valeurs et présentation de l'équipe</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="contact">
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">Contact</h3>
+            <p class="text-sm text-gray-500">Dernière modification : 10/03/2024</p>
+          </div>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <p class="text-sm text-gray-600">Informations de contact et formulaire de demande</p>
+    </div>
+  </div>
+
+  <!-- Livraison -->
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="livraison">
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">Livraison</h3>
+            <p class="text-sm text-gray-500">Dernière modification : 08/03/2024</p>
+          </div>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <p class="text-sm text-gray-600">Informations sur les modes et délais de livraison</p>
+    </div>
+  </div>
+
+  <!-- Retours -->
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="retours">
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16l4-2 4 2 4-2 4 2z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">Retours & Remboursements</h3>
+            <p class="text-sm text-gray-500">Dernière modification : 08/03/2024</p>
+          </div>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <p class="text-sm text-gray-600">Politique de retours, échanges et remboursements</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="faq">
+    <div class="p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">FAQ</h3>
+            <p class="text-sm text-gray-500">Dernière modification : Aujourd'hui</p>
+          </div>
+        </div>
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+      <p class="text-sm text-gray-600">Questions fréquemment posées et leurs réponses</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal édition de contenu -->
+<div id="content-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+  <div class="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+      <div>
+        <h3 class="text-xl font-semibold text-gray-900" id="modal-page-title">Modifier la page</h3>
+        <p class="text-sm text-gray-500 mt-1" id="modal-page-url">/cgv</p>
+      </div>
+      <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-6">
+      <form id="content-form" class="space-y-6">
+        <!-- Titre de la page -->
+        <div>
+          <label for="page-title" class="block text-sm font-medium text-gray-700 mb-2">Titre de la page</label>
+          <input 
+            type="text" 
+            id="page-title" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            placeholder="Conditions Générales de Vente"
+          />
+        </div>
+
+        <!-- Sous-titre optionnel -->
+        <div>
+          <label for="page-subtitle" class="block text-sm font-medium text-gray-700 mb-2">Sous-titre (optionnel)</label>
+          <input 
+            type="text" 
+            id="page-subtitle"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            placeholder="Dernière mise à jour : 15 mars 2024"
+          />
+        </div>
+
+        <!-- Barre d'outils de formatage -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Contenu de la page</label>
+          <div class="border border-gray-300 rounded-lg overflow-hidden">
+            <!-- Toolbar -->
+            <div class="bg-gray-50 border-b border-gray-300 p-2 flex gap-1 flex-wrap">
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded" data-format="bold" title="Gras">
+                <strong>B</strong>
+              </button>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded" data-format="italic" title="Italique">
+                <em>I</em>
+              </button>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded" data-format="underline" title="Souligné">
+                <u>U</u>
+              </button>
+              <div class="w-px bg-gray-300 mx-1"></div>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded text-sm" data-format="h1" title="Titre 1">
+                H1
+              </button>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded text-sm" data-format="h2" title="Titre 2">
+                H2
+              </button>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded text-sm" data-format="h3" title="Titre 3">
+                H3
+              </button>
+              <div class="w-px bg-gray-300 mx-1"></div>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded" data-format="ul" title="Liste à puces">
+                • Liste
+              </button>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded" data-format="ol" title="Liste numérotée">
+                1. Liste
+              </button>
+              <div class="w-px bg-gray-300 mx-1"></div>
+              <button type="button" class="format-btn px-3 py-1 hover:bg-gray-200 rounded" data-format="link" title="Lien">
+                🔗 Lien
+              </button>
+            </div>
+            
+            <!-- Textarea -->
+            <textarea 
+              id="page-content"
+              required
+              rows="20"
+              class="w-full px-4 py-3 focus:outline-none resize-none font-mono text-sm"
+              placeholder="Écrivez le contenu de la page ici...&#10;&#10;Vous pouvez utiliser les boutons de formatage ci-dessus ou écrire directement en HTML."
+            ></textarea>
+          </div>
+          <p class="mt-2 text-xs text-gray-500">HTML autorisé : &lt;h1&gt; &lt;h2&gt; &lt;h3&gt; &lt;p&gt; &lt;strong&gt; &lt;em&gt; &lt;u&gt; &lt;ul&gt; &lt;ol&gt; &lt;li&gt; &lt;a&gt;</p>
+        </div>
+
+        <!-- Prévisualisation -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-sm font-medium text-gray-700">Prévisualisation</label>
+            <button type="button" id="refresh-preview" class="text-sm text-blue-600 hover:text-blue-800">
+              🔄 Actualiser
+            </button>
+          </div>
+          <div id="content-preview" class="border border-gray-300 rounded-lg p-6 bg-gray-50 prose prose-sm max-w-none">
+            <p class="text-gray-500 italic">La prévisualisation apparaîtra ici...</p>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="p-6 border-t border-gray-200 bg-gray-50 flex gap-3">
+      <button 
+        type="button"
+        id="cancel-btn"
+        class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-white transition-colors font-medium"
+      >
+        Annuler
+      </button>
+      <div class="flex-1"></div>
+      <button 
+        type="button"
+        id="save-draft-btn"
+        class="px-6 py-3 border border-blue-300 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+      >
+        Enregistrer brouillon
+      </button>
+      <button 
+        type="button"
+        id="publish-btn"
+        class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+      >
+        Publier
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Modal management
+const modal = document.getElementById('content-modal');
+const modalTitle = document.getElementById('modal-page-title');
+const modalUrl = document.getElementById('modal-page-url');
+const closeModalBtn = document.getElementById('close-modal');
+const cancelBtn = document.getElementById('cancel-btn');
+
+let currentPage = null;
+
+// Page data (would come from backend)
+const pageData = {
+  cgv: {
+    title: 'Conditions Générales de Vente',
+    url: '/cgv',
+    subtitle: 'Dernière mise à jour : 15 mars 2024',
+    content: '<h2>Article 1 : Objet</h2>\n<p>Les présentes conditions générales de vente régissent les relations contractuelles entre Maison Manoé et ses clients...</p>'
+  },
+  confidentialite: {
+    title: 'Politique de confidentialité',
+    url: '/confidentialite',
+    subtitle: 'Dernière mise à jour : 15 mars 2024',
+    content: '<h2>Protection de vos données</h2>\n<p>Maison Manoé s\'engage à protéger la confidentialité de vos données personnelles...</p>'
+  },
+  'a-propos': {
+    title: 'À propos de Maison Manoé',
+    url: '/a-propos',
+    subtitle: 'Notre histoire',
+    content: '<h2>Notre histoire</h2>\n<p>Maison Manoé est née d\'une passion pour l\'artisanat et le design intemporel...</p>'
+  },
+  contact: {
+    title: 'Contact',
+    url: '/contact',
+    subtitle: 'Nous sommes à votre écoute',
+    content: '<h2>Contactez-nous</h2>\n<p>Vous avez une question ? N\'hésitez pas à nous contacter...</p>'
+  },
+  livraison: {
+    title: 'Livraison',
+    url: '/livraison',
+    subtitle: 'Modes et délais de livraison',
+    content: '<h2>Nos modes de livraison</h2>\n<p>Nous proposons plusieurs options de livraison adaptées à vos besoins...</p>'
+  },
+  retours: {
+    title: 'Retours & Remboursements',
+    url: '/retours',
+    subtitle: 'Politique de retours',
+    content: '<h2>Retourner un produit</h2>\n<p>Vous disposez de 14 jours pour retourner un produit...</p>'
+  },
+  faq: {
+    title: 'Questions fréquentes',
+    url: '/faq',
+    subtitle: 'Trouvez rapidement des réponses',
+    content: '<h2>Questions fréquentes</h2>\n<p>Retrouvez ici les réponses aux questions les plus courantes...</p>'
+  }
+};
+
+// Open modal for page edit
+document.querySelectorAll('.page-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const pageId = card.dataset.page;
+    currentPage = pageId;
+    const data = pageData[pageId];
+    
+    modalTitle.textContent = `Modifier : ${data.title}`;
+    modalUrl.textContent = data.url;
+    document.getElementById('page-title').value = data.title;
+    document.getElementById('page-subtitle').value = data.subtitle;
+    document.getElementById('page-content').value = data.content;
+    
+    updatePreview();
+    modal.classList.remove('hidden');
+  });
+});
+
+function closeModal() {
+  modal.classList.add('hidden');
+  currentPage = null;
+}
+
+closeModalBtn.addEventListener('click', closeModal);
+cancelBtn.addEventListener('click', closeModal);
+
+// Close modal on outside click
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+
+// Format buttons
+document.querySelectorAll('.format-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const format = btn.dataset.format;
+    const textarea = document.getElementById('page-content');
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = textarea.value.substring(start, end);
+    let newText = '';
+    
+    switch(format) {
+      case 'bold':
+        newText = `<strong>${selectedText || 'texte en gras'}</strong>`;
+        break;
+      case 'italic':
+        newText = `<em>${selectedText || 'texte en italique'}</em>`;
+        break;
+      case 'underline':
+        newText = `<u>${selectedText || 'texte souligné'}</u>`;
+        break;
+      case 'h1':
+        newText = `<h1>${selectedText || 'Titre 1'}</h1>`;
+        break;
+      case 'h2':
+        newText = `<h2>${selectedText || 'Titre 2'}</h2>`;
+        break;
+      case 'h3':
+        newText = `<h3>${selectedText || 'Titre 3'}</h3>`;
+        break;
+      case 'ul':
+        newText = `<ul>\n  <li>${selectedText || 'Élément 1'}</li>\n  <li>Élément 2</li>\n</ul>`;
+        break;
+      case 'ol':
+        newText = `<ol>\n  <li>${selectedText || 'Élément 1'}</li>\n  <li>Élément 2</li>\n</ol>`;
+        break;
+      case 'link':
+        const url = prompt('URL du lien:', 'https://');
+        if (url) {
+          newText = `<a href="${url}">${selectedText || 'Texte du lien'}</a>`;
+        }
+        break;
+    }
+    
+    if (newText) {
+      textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+      textarea.focus();
+      textarea.setSelectionRange(start, start + newText.length);
+    }
+  });
+});
+
+// Preview
+function updatePreview() {
+  const content = document.getElementById('page-content').value;
+  const preview = document.getElementById('content-preview');
+  preview.innerHTML = content || '<p class="text-gray-500 italic">La prévisualisation apparaîtra ici...</p>';
+}
+
+document.getElementById('refresh-preview').addEventListener('click', updatePreview);
+
+// Auto-update preview on typing (debounced)
+let previewTimeout;
+document.getElementById('page-content').addEventListener('input', () => {
+  clearTimeout(previewTimeout);
+  previewTimeout = setTimeout(updatePreview, 500);
+});
+
+// Save draft
+document.getElementById('save-draft-btn').addEventListener('click', () => {
+  const data = {
+    page: currentPage,
+    title: document.getElementById('page-title').value,
+    subtitle: document.getElementById('page-subtitle').value,
+    content: document.getElementById('page-content').value,
+    status: 'draft'
+  };
+  
+  console.log('Saving draft:', data);
+  alert('Brouillon enregistré !');
+});
+
+// Publish
+document.getElementById('publish-btn').addEventListener('click', () => {
+  const data = {
+    page: currentPage,
+    title: document.getElementById('page-title').value,
+    subtitle: document.getElementById('page-subtitle').value,
+    content: document.getElementById('page-content').value,
+    status: 'published'
+  };
+  
+  console.log('Publishing:', data);
+  alert('Page publiée avec succès !');
+  closeModal();
+});
+</script>
+{% endblock %}

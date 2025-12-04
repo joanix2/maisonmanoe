@@ -120,6 +120,31 @@ async def new_password(request: Request):
     return templates.TemplateResponse("new-password.html", {"request": request})
 
 
+# Routes Admin
+@app.get("/admin", response_class=HTMLResponse)
+async def admin_dashboard(request: Request):
+    """Dashboard administrateur"""
+    return templates.TemplateResponse("admin/dashboard.html", {"request": request})
+
+
+@app.get("/admin/promos", response_class=HTMLResponse)
+async def admin_promos(request: Request):
+    """Gestion des promotions"""
+    return templates.TemplateResponse("admin/promos.html", {"request": request})
+
+
+@app.get("/admin/produits", response_class=HTMLResponse)
+async def admin_produits(request: Request):
+    """Gestion des produits"""
+    return templates.TemplateResponse("admin/produits.html", {"request": request})
+
+
+@app.get("/admin/texte", response_class=HTMLResponse)
+async def admin_texte(request: Request):
+    """Gestion des contenus texte"""
+    return templates.TemplateResponse("admin/texte.html", {"request": request})
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
