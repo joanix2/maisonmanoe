@@ -1,0 +1,170 @@
+{% extends "base.html" %} {% block title %}À propos - Maison Manoé{% endblock %} {% block description %}Découvrez l'histoire de Maison Manoé — une marque française dédiée à l'art de vivre et à la
+décoration d'intérieur artisanale.{% endblock %} {% block content %}
+<!-- Hero Section -->
+<section class="relative h-[60vh] bg-cover bg-center flex items-center justify-center" style="background-image: url('https://picsum.photos/1920/800?random=about')">
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="z-10 text-center text-white">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg lowercase">À propos de Maison Manoé</h1>
+    <p class="text-xl md:text-2xl drop-shadow-md">L'art de vivre à la française</p>
+  </div>
+</section>
+
+<!-- Notre Histoire -->
+<section class="py-16 px-4 md:px-8 lg:px-16 bg-white">
+  <div class="container mx-auto max-w-6xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 lowercase">Notre histoire</h2>
+        <div class="space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            Maison Manoé est née en 2020 d'une passion pour l'artisanat français et le désir de redonner vie aux savoir-faire traditionnels. Notre fondatrice, Manoé Duchamp, a grandi entourée de
+            l'amour des belles choses et du fait main.
+          </p>
+          <p>
+            Après des années passées dans le design d'intérieur, elle décide de créer sa propre marque pour offrir des pièces authentiques qui racontent une histoire. Chaque objet est soigneusement
+            sélectionné auprès d'artisans passionnés installés aux quatre coins de la France.
+          </p>
+          <p>Aujourd'hui, Maison Manoé est devenue une référence pour ceux qui recherchent des objets de décoration uniques, alliant esthétique contemporaine et savoir-faire ancestral.</p>
+        </div>
+      </div>
+      <div>
+        <img src="https://picsum.photos/600/500?random=story" alt="Notre histoire" class="w-full h-[500px] object-cover rounded-lg shadow-lg" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nos Valeurs -->
+<section class="py-16 px-4 md:px-8 lg:px-16 bg-maison-beige/20">
+  <div class="container mx-auto max-w-6xl">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 lowercase">Nos valeurs</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Valeur 1 -->
+      <article class="bg-white rounded-lg p-8 shadow-md text-center">
+        <div class="w-16 h-16 bg-maison-beige rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Artisanat</h3>
+        <p class="text-gray-700 leading-relaxed">Nous valorisons le travail artisanal et les techniques traditionnelles transmises de génération en génération.</p>
+      </article>
+
+      <!-- Valeur 2 -->
+      <article class="bg-white rounded-lg p-8 shadow-md text-center">
+        <div class="w-16 h-16 bg-maison-beige rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Durabilité</h3>
+        <p class="text-gray-700 leading-relaxed">Nous nous engageons pour une production respectueuse de l'environnement avec des matériaux durables et locaux.</p>
+      </article>
+
+      <!-- Valeur 3 -->
+      <article class="bg-white rounded-lg p-8 shadow-md text-center">
+        <div class="w-16 h-16 bg-maison-beige rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Passion</h3>
+        <p class="text-gray-700 leading-relaxed">Chaque pièce est choisie avec amour et attention pour sublimer votre quotidien et votre intérieur.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Nos Artisans -->
+<section class="py-16 px-4 md:px-8 lg:px-16 bg-white">
+  <div class="container mx-auto max-w-6xl">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 lowercase">Nos artisans partenaires</h2>
+    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Nous collaborons avec des artisans talentueux partout en France, chacun expert dans son domaine.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Artisan 1 -->
+      <article class="text-center">
+        <div class="mb-4 overflow-hidden rounded-full w-48 h-48 mx-auto">
+          <img src="https://picsum.photos/200/200?random=artisan1" alt="Artisan céramiste" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-bold text-lg mb-1">Marie Leblanc</h3>
+        <p class="text-maison-beige mb-2">Céramiste</p>
+        <p class="text-sm text-gray-600">Provence</p>
+      </article>
+
+      <!-- Artisan 2 -->
+      <article class="text-center">
+        <div class="mb-4 overflow-hidden rounded-full w-48 h-48 mx-auto">
+          <img src="https://picsum.photos/200/200?random=artisan2" alt="Artisan ébéniste" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-bold text-lg mb-1">Jean Moreau</h3>
+        <p class="text-maison-beige mb-2">Ébéniste</p>
+        <p class="text-sm text-gray-600">Bretagne</p>
+      </article>
+
+      <!-- Artisan 3 -->
+      <article class="text-center">
+        <div class="mb-4 overflow-hidden rounded-full w-48 h-48 mx-auto">
+          <img src="https://picsum.photos/200/200?random=artisan3" alt="Artisan tisserand" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-bold text-lg mb-1">Sophie Martin</h3>
+        <p class="text-maison-beige mb-2">Tisserande</p>
+        <p class="text-sm text-gray-600">Normandie</p>
+      </article>
+
+      <!-- Artisan 4 -->
+      <article class="text-center">
+        <div class="mb-4 overflow-hidden rounded-full w-48 h-48 mx-auto">
+          <img src="https://picsum.photos/200/200?random=artisan4" alt="Artisan verrier" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-bold text-lg mb-1">Thomas Dupont</h3>
+        <p class="text-maison-beige mb-2">Verrier</p>
+        <p class="text-sm text-gray-600">Alsace</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Notre Engagement -->
+<section class="py-16 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-maison-beige/30 to-maison-tan/30">
+  <div class="container mx-auto max-w-4xl text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 lowercase">Notre engagement</h2>
+    <div class="space-y-4 text-gray-700 leading-relaxed text-lg">
+      <p>
+        Chez Maison Manoé, nous croyons que chaque objet doit avoir une âme. C'est pourquoi nous sélectionnons minutieusement chaque pièce en privilégiant la qualité, l'authenticité et le
+        savoir-faire.
+      </p>
+      <p>Nous nous engageons à soutenir les artisans français, à promouvoir une consommation responsable et à offrir à nos clients des produits durables qui traverseront le temps.</p>
+      <p class="font-semibold text-gray-900 pt-4">Ensemble, redonnons ses lettres de noblesse à l'artisanat français.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="py-16 px-4 md:px-8 lg:px-16 bg-white">
+  <div class="container mx-auto max-w-4xl text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 lowercase">Envie d'en savoir plus ?</h2>
+    <p class="text-gray-700 text-lg mb-8">N'hésitez pas à nous contacter pour toute question ou pour découvrir nos dernières créations.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="mailto:contact@maisonmanoe.com" class="px-8 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-medium inline-block"> Nous contacter </a>
+      <a href="/recherche" class="px-8 py-3 border border-black text-black rounded hover:bg-gray-50 transition-colors font-medium inline-block"> Découvrir nos produits </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

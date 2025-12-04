@@ -42,6 +42,12 @@ async def confidentialite(request: Request):
     return templates.TemplateResponse("confidentialite.html", {"request": request})
 
 
+@app.get("/cgv", response_class=HTMLResponse)
+async def cgv(request: Request):
+    """Page des conditions générales de vente"""
+    return templates.TemplateResponse("cgv.html", {"request": request})
+
+
 @app.get("/profile", response_class=HTMLResponse)
 async def profile(request: Request):
     """Page de profil utilisateur"""
@@ -64,6 +70,42 @@ async def paiement(request: Request):
 async def validation_paiement(request: Request):
     """Page de validation du paiement"""
     return templates.TemplateResponse("validation-paiement.html", {"request": request})
+
+
+@app.get("/contact", response_class=HTMLResponse)
+async def contact(request: Request):
+    """Page de contact"""
+    return templates.TemplateResponse("contact.html", {"request": request})
+
+
+@app.get("/retours", response_class=HTMLResponse)
+async def retours(request: Request):
+    """Page de retours et échanges"""
+    return templates.TemplateResponse("retours.html", {"request": request})
+
+
+@app.get("/livraison", response_class=HTMLResponse)
+async def livraison(request: Request):
+    """Page d'informations sur la livraison"""
+    return templates.TemplateResponse("livraison.html", {"request": request})
+
+
+@app.get("/faq", response_class=HTMLResponse)
+async def faq(request: Request):
+    """Page FAQ - Questions fréquentes"""
+    return templates.TemplateResponse("faq.html", {"request": request})
+
+
+@app.get("/inscription", response_class=HTMLResponse)
+async def inscription(request: Request):
+    """Page d'inscription"""
+    return templates.TemplateResponse("inscription.html", {"request": request})
+
+
+@app.get("/connexion", response_class=HTMLResponse)
+async def connexion(request: Request):
+    """Page de connexion"""
+    return templates.TemplateResponse("connexion.html", {"request": request})
 
 
 if __name__ == "__main__":

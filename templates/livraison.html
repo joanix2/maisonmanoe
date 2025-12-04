@@ -1,0 +1,223 @@
+{% extends "base.html" %} {% block title %}Livraison - Maison Manoé{% endblock %} {% block description %}Informations sur la livraison Maison Manoé — modes de livraison, délais, tarifs et suivi de
+colis.{% endblock %} {% block content %}
+<section class="py-12 px-4 md:px-8 lg:px-16 bg-gray-50 min-h-screen">
+  <div class="container mx-auto max-w-4xl">
+    <div class="bg-white rounded-lg shadow p-8 md:p-12">
+      <h1 class="text-3xl md:text-4xl font-bold mb-8">Informations de Livraison</h1>
+
+      <!-- Introduction -->
+      <div class="mb-8">
+        <p class="text-gray-700 leading-relaxed text-lg">
+          Nous livrons vos commandes avec soin partout en France et dans plusieurs pays européens. Découvrez nos différents modes de livraison et leurs délais.
+        </p>
+      </div>
+
+      <!-- Modes de livraison -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-6">Modes de livraison disponibles</h2>
+
+        <div class="space-y-4">
+          <!-- Livraison standard -->
+          <div class="border border-gray-200 rounded-lg p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold">Livraison Standard</h3>
+                <p class="text-gray-600 mt-1">Colissimo - Suivi de colis</p>
+              </div>
+              <span class="text-2xl font-bold text-maison-beige">€5.90</span>
+            </div>
+            <div class="space-y-2 text-gray-700">
+              <p><strong>Délai :</strong> 3-5 jours ouvrés</p>
+              <p><strong>Suivi :</strong> Oui, numéro de suivi envoyé par email</p>
+              <p><strong>Signature :</strong> Non requise</p>
+            </div>
+          </div>
+
+          <!-- Livraison express -->
+          <div class="border border-gray-200 rounded-lg p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold">Livraison Express</h3>
+                <p class="text-gray-600 mt-1">Chronopost - Livraison rapide</p>
+              </div>
+              <span class="text-2xl font-bold text-maison-beige">€12.90</span>
+            </div>
+            <div class="space-y-2 text-gray-700">
+              <p><strong>Délai :</strong> 24-48 heures</p>
+              <p><strong>Suivi :</strong> Oui, suivi en temps réel</p>
+              <p><strong>Signature :</strong> Requise</p>
+              <p><strong>Créneau :</strong> Livraison en journée (9h-18h)</p>
+            </div>
+          </div>
+
+          <!-- Livraison gratuite -->
+          <div class="border border-green-500 rounded-lg p-6 bg-green-50">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold flex items-center">
+                  Livraison Gratuite
+                  <span class="ml-2 px-2 py-1 bg-green-500 text-white text-xs rounded">ÉCONOMIQUE</span>
+                </h3>
+                <p class="text-gray-600 mt-1">Colissimo - Délai standard</p>
+              </div>
+              <span class="text-2xl font-bold text-green-600">Gratuit</span>
+            </div>
+            <div class="space-y-2 text-gray-700">
+              <p><strong>Délai :</strong> 7-10 jours ouvrés</p>
+              <p><strong>Suivi :</strong> Oui, numéro de suivi fourni</p>
+              <p><strong>Signature :</strong> Non requise</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Zones de livraison -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Zones de livraison</h2>
+
+        <div class="space-y-4">
+          <!-- France métropolitaine -->
+          <div>
+            <h3 class="text-lg font-semibold mb-2">🇫🇷 France métropolitaine</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Toutes nos offres de livraison sont disponibles pour la France métropolitaine. Les délais indiqués s'appliquent à partir de l'expédition de votre commande.
+            </p>
+          </div>
+
+          <!-- Corse et DOM-TOM -->
+          <div>
+            <h3 class="text-lg font-semibold mb-2">🏝️ Corse et DOM-TOM</h3>
+            <p class="text-gray-700 leading-relaxed mb-2">Livraison disponible avec supplément et délais allongés :</p>
+            <ul class="list-disc list-inside text-gray-700 ml-4 space-y-1">
+              <li>Corse : +3-5 jours, supplément de €8</li>
+              <li>DOM-TOM : +7-15 jours, supplément de €25</li>
+            </ul>
+          </div>
+
+          <!-- Europe -->
+          <div>
+            <h3 class="text-lg font-semibold mb-2">🇪🇺 Union Européenne</h3>
+            <p class="text-gray-700 leading-relaxed mb-2">Nous livrons dans les pays suivants :</p>
+            <p class="text-gray-700 ml-4 mb-2">Belgique, Luxembourg, Allemagne, Pays-Bas, Italie, Espagne, Portugal</p>
+            <p class="text-gray-700 leading-relaxed"><strong>Délai :</strong> 5-10 jours ouvrés | <strong>Tarif :</strong> €15</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Traitement des commandes -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Traitement des commandes</h2>
+        <div class="space-y-4 text-gray-700 leading-relaxed">
+          <p><strong>Délai de préparation :</strong> Les commandes sont préparées et expédiées sous 24-48h (jours ouvrés).</p>
+          <p><strong>Commandes passées le week-end :</strong> Les commandes passées le samedi et dimanche sont traitées dès le lundi suivant.</p>
+          <p><strong>Jours fériés :</strong> Aucune expédition n'est effectuée les jours fériés. Un délai supplémentaire peut s'appliquer.</p>
+        </div>
+      </article>
+
+      <!-- Suivi de commande -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Suivi de votre commande</h2>
+
+        <div class="space-y-4">
+          <div class="p-6 bg-blue-50 border border-blue-200 rounded">
+            <h3 class="font-semibold mb-2 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Notification d'expédition
+            </h3>
+            <p class="text-gray-700">Dès l'expédition de votre colis, vous recevrez un email avec votre numéro de suivi et un lien pour suivre votre livraison en temps réel.</p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold mb-2">Comment suivre mon colis ?</h3>
+            <ol class="list-decimal list-inside text-gray-700 space-y-2 ml-4">
+              <li>Connectez-vous à votre <a href="/profile" class="text-maison-beige hover:underline">espace client</a></li>
+              <li>Accédez à la section "Mes commandes"</li>
+              <li>Cliquez sur le numéro de suivi de votre commande</li>
+              <li>Vous serez redirigé vers le site du transporteur pour le suivi détaillé</li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <!-- Réception du colis -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Réception de votre colis</h2>
+
+        <div class="space-y-4 text-gray-700 leading-relaxed">
+          <div>
+            <h3 class="font-semibold mb-2">📦 Vérification à la réception</h3>
+            <p class="mb-2">Nous vous recommandons de vérifier l'état de votre colis en présence du livreur :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li>Vérifiez que le colis n'est pas endommagé</li>
+              <li>En cas de dommage visible, refusez le colis ou émettez des réserves écrites</li>
+              <li>Prenez des photos si nécessaire</li>
+              <li>Contactez-nous dans les 48h à <a href="mailto:sav@maisonmanoe.com" class="text-maison-beige hover:underline">sav@maisonmanoe.com</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-semibold mb-2">🏠 Absence lors de la livraison</h3>
+            <p class="mb-2">Si vous êtes absent lors du passage du livreur :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li>Un avis de passage sera déposé dans votre boîte aux lettres</li>
+              <li>Votre colis sera disponible en point relais pendant 14 jours</li>
+              <li>Vous recevrez un SMS/email avec les coordonnées du point relais</li>
+              <li>Passé ce délai, le colis sera retourné à nos entrepôts</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problèmes de livraison -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Problèmes de livraison</h2>
+
+        <div class="space-y-4">
+          <div>
+            <h3 class="font-semibold text-red-600 mb-2">Colis perdu</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Si votre colis n'arrive pas dans les délais prévus (+ 5 jours), contactez-nous immédiatement. Nous ouvrirons une enquête auprès du transporteur et vous proposerons un renvoi ou un
+              remboursement.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-red-600 mb-2">Colis endommagé</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Si votre colis arrive endommagé, contactez-nous sous 48h avec des photos. Nous vous proposerons un remplacement gratuit ou un remboursement intégral.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-red-600 mb-2">Erreur d'adresse</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Si vous avez fait une erreur dans votre adresse de livraison, contactez-nous au plus vite. Si le colis n'a pas encore été expédié, nous pourrons modifier l'adresse. Une fois expédié, des
+              frais de réacheminement pourront s'appliquer.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Contact -->
+      <article class="mt-12 pt-8 border-t">
+        <h2 class="text-2xl font-bold mb-4">Questions sur votre livraison ?</h2>
+        <div class="text-gray-700 leading-relaxed space-y-2">
+          <p>Notre service client est là pour vous aider :</p>
+          <p class="mt-4"><strong>Email :</strong> <a href="mailto:contact@maisonmanoe.com" class="text-maison-beige hover:underline">contact@maisonmanoe.com</a></p>
+          <p><strong>Téléphone :</strong> <a href="tel:+33123456789" class="text-maison-beige hover:underline">01 23 45 67 89</a> (Lun-Ven : 9h-18h)</p>
+          <p class="mt-4">
+            <a href="/contact" class="inline-block px-6 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-medium"> Contactez-nous </a>
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Retour -->
+    <div class="mt-8 text-center">
+      <a href="/" class="text-maison-beige hover:underline">← Retour à l'accueil</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

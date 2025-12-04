@@ -2,6 +2,15 @@
 authentiques fabriquées à la main par des artisans passionnés.{% endblock %} {% block content %}
 <!-- SECTION HERO - Bannière principale avec image de fond -->
 <section class="relative h-[80vh] bg-cover bg-center flex items-center justify-center text-white text-center" style="background-image: url('https://picsum.photos/1920/1080')" role="banner">
+  <!-- Menu overlay en haut à gauche -->
+  <div class="absolute top-8 left-8 z-20">
+    <nav class="flex gap-6" aria-label="Navigation produits">
+      <a href="/recherche" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-lg drop-shadow-lg">produits</a>
+      <a href="/recherche?filter=nouveautes" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-lg drop-shadow-lg">nouveautés</a>
+      <a href="/recherche?filter=promotions" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-lg drop-shadow-lg">promotions</a>
+    </nav>
+  </div>
+
   <div class="z-10">
     <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Tendance du moment</h1>
     <p class="text-xl md:text-2xl mb-8 drop-shadow-md">Nouvelle collection</p>

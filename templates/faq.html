@@ -1,0 +1,599 @@
+{% extends "base.html" %} {% block title %}FAQ - Questions fréquentes - Maison Manoé{% endblock %} {% block description %}Questions fréquentes sur Maison Manoé — commande, livraison, retours, paiement
+et produits. Trouvez rapidement les réponses à vos questions.{% endblock %} {% block content %}
+<section class="py-12 px-4 md:px-8 lg:px-16 bg-gray-50 min-h-screen">
+  <div class="container mx-auto max-w-4xl">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 lowercase">Questions fréquentes</h1>
+      <p class="text-gray-600 text-lg">Trouvez rapidement les réponses à vos questions</p>
+    </div>
+
+    <!-- Recherche rapide -->
+    <div class="mb-8">
+      <div class="relative">
+        <input type="text" id="faq-search" placeholder="Rechercher une question..." class="w-full px-4 py-3 pl-12 border rounded-lg focus:border-maison-beige focus:outline-none" />
+        <svg class="w-5 h-5 text-gray-400 absolute left-4 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Navigation par catégories -->
+    <div class="bg-white rounded-lg shadow p-6 mb-8">
+      <h2 class="font-bold text-xl mb-4">Navigation rapide</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <a href="#commande" class="p-4 bg-gray-50 rounded hover:bg-maison-beige/20 transition-colors text-center">
+          <svg class="w-8 h-8 mx-auto mb-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="font-medium">Commande</span>
+        </a>
+        <a href="#livraison" class="p-4 bg-gray-50 rounded hover:bg-maison-beige/20 transition-colors text-center">
+          <svg class="w-8 h-8 mx-auto mb-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+          </svg>
+          <span class="font-medium">Livraison</span>
+        </a>
+        <a href="#retours" class="p-4 bg-gray-50 rounded hover:bg-maison-beige/20 transition-colors text-center">
+          <svg class="w-8 h-8 mx-auto mb-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+          </svg>
+          <span class="font-medium">Retours</span>
+        </a>
+        <a href="#paiement" class="p-4 bg-gray-50 rounded hover:bg-maison-beige/20 transition-colors text-center">
+          <svg class="w-8 h-8 mx-auto mb-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+          <span class="font-medium">Paiement</span>
+        </a>
+        <a href="#produits" class="p-4 bg-gray-50 rounded hover:bg-maison-beige/20 transition-colors text-center">
+          <svg class="w-8 h-8 mx-auto mb-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          <span class="font-medium">Produits</span>
+        </a>
+        <a href="#compte" class="p-4 bg-gray-50 rounded hover:bg-maison-beige/20 transition-colors text-center">
+          <svg class="w-8 h-8 mx-auto mb-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          <span class="font-medium">Compte</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Commande -->
+    <div id="commande" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 flex items-center">
+        <svg class="w-6 h-6 mr-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        Commande
+      </h2>
+
+      <div class="space-y-4 faq-category">
+        <!-- Q1 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Comment passer une commande ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Pour passer une commande :</p>
+            <ol class="list-decimal list-inside ml-4 space-y-1">
+              <li>Parcourez notre catalogue et ajoutez les produits à votre panier</li>
+              <li>Cliquez sur l'icône panier en haut à droite</li>
+              <li>Vérifiez votre commande et cliquez sur "Passer la commande"</li>
+              <li>Renseignez vos informations de livraison</li>
+              <li>Choisissez votre mode de livraison</li>
+              <li>Procédez au paiement sécurisé</li>
+            </ol>
+            <p class="mt-2">Vous recevrez une confirmation par email.</p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Puis-je modifier ma commande après validation ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Une fois la commande validée, il n'est plus possible de la modifier directement. Cependant, si votre commande n'a pas encore été expédiée, contactez-nous rapidement à
+              <a href="mailto:contact@maisonmanoe.com" class="text-maison-beige hover:underline">contact@maisonmanoe.com</a> et nous ferons notre possible pour modifier votre commande.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Comment annuler ma commande ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Vous pouvez annuler votre commande gratuitement avant son expédition. Contactez-nous dès que possible à
+              <a href="mailto:contact@maisonmanoe.com" class="text-maison-beige hover:underline">contact@maisonmanoe.com</a> avec votre numéro de commande. Si la commande a déjà été expédiée, vous
+              pourrez utiliser votre droit de rétractation (14 jours).
+            </p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Je n'ai pas reçu ma confirmation de commande</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Si vous n'avez pas reçu d'email de confirmation :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li>Vérifiez votre dossier spam/courrier indésirable</li>
+              <li>Vérifiez l'adresse email utilisée lors de la commande</li>
+              <li>Connectez-vous à votre <a href="/profile" class="text-maison-beige hover:underline">espace client</a> pour consulter vos commandes</li>
+              <li>Contactez-nous à <a href="mailto:contact@maisonmanoe.com" class="text-maison-beige hover:underline">contact@maisonmanoe.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Livraison -->
+    <div id="livraison" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 flex items-center">
+        <svg class="w-6 h-6 mr-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+        </svg>
+        Livraison
+      </h2>
+
+      <div class="space-y-4 faq-category">
+        <!-- Q1 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Quels sont les délais de livraison ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Nous proposons 3 modes de livraison :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li><strong>Standard (€5.90)</strong> : 3-5 jours ouvrés</li>
+              <li><strong>Express (€12.90)</strong> : 24-48 heures</li>
+              <li><strong>Gratuite</strong> : 7-10 jours ouvrés</li>
+            </ul>
+            <p class="mt-2">+ 24-48h de préparation avant expédition. <a href="/livraison" class="text-maison-beige hover:underline">Plus d'informations</a></p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Comment suivre ma commande ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Dès l'expédition de votre colis, vous recevrez un email avec :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li>Votre numéro de suivi</li>
+              <li>Un lien vers le site du transporteur</li>
+            </ul>
+            <p class="mt-2">Vous pouvez également suivre votre commande depuis votre <a href="/profile" class="text-maison-beige hover:underline">espace client</a>.</p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Livrez-vous à l'international ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Oui, nous livrons dans plusieurs pays :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li><strong>France métropolitaine</strong> : tous nos modes de livraison</li>
+              <li><strong>Corse et DOM-TOM</strong> : avec supplément</li>
+              <li><strong>Union Européenne</strong> : Belgique, Luxembourg, Allemagne, Pays-Bas, Italie, Espagne, Portugal (€15, 5-10 jours)</li>
+            </ul>
+            <p class="mt-2"><a href="/livraison" class="text-maison-beige hover:underline">Voir tous les détails</a></p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Que faire si je suis absent lors de la livraison ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Un avis de passage sera déposé et votre colis sera disponible en point relais pendant 14 jours. Vous recevrez un SMS/email avec les coordonnées du point relais. Passé ce délai, le colis
+              sera retourné à nos entrepôts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retours -->
+    <div id="retours" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 flex items-center">
+        <svg class="w-6 h-6 mr-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+        </svg>
+        Retours & Échanges
+      </h2>
+
+      <div class="space-y-4 faq-category">
+        <!-- Q1 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Quel est le délai pour retourner un produit ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Vous disposez de <strong>14 jours</strong> à compter de la réception de votre commande pour nous retourner vos articles. Le produit doit être dans son emballage d'origine, en parfait
+              état et non utilisé. <a href="/retours" class="text-maison-beige hover:underline">Voir la procédure complète</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Les frais de retour sont-ils gratuits ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Cela dépend de la raison du retour :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li><strong>Gratuit</strong> : si le produit est défectueux ou ne correspond pas à votre commande</li>
+              <li><strong>À votre charge</strong> : en cas de simple changement d'avis (environ €5-10)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Comment procéder à un échange ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Nous n'effectuons pas d'échanges directs. Pour échanger un produit, effectuez un retour puis passez une nouvelle commande pour l'article souhaité. Cela vous permet de bénéficier des
+              offres en cours.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Sous combien de temps serai-je remboursé ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>Une fois le produit reçu et contrôlé dans nos entrepôts, nous procédons au remboursement sous <strong>14 jours</strong> par le même moyen de paiement utilisé lors de la commande.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paiement -->
+    <div id="paiement" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 flex items-center">
+        <svg class="w-6 h-6 mr-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+        </svg>
+        Paiement
+      </h2>
+
+      <div class="space-y-4 faq-category">
+        <!-- Q1 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Quels moyens de paiement acceptez-vous ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Nous acceptons les paiements par carte bancaire :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li>Visa</li>
+              <li>Mastercard</li>
+              <li>American Express</li>
+            </ul>
+            <p class="mt-2">Le paiement est 100% sécurisé via notre prestataire de paiement certifié.</p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Le paiement est-il sécurisé ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Oui, absolument. Le paiement est entièrement sécurisé grâce au protocole SSL/TLS. Vos données bancaires ne sont ni collectées ni conservées par Maison Manoé. Elles sont directement
+              transmises à notre prestataire de paiement sécurisé.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Mon paiement a été refusé, que faire ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p class="mb-2">Plusieurs raisons peuvent expliquer un refus de paiement :</p>
+            <ul class="list-disc list-inside ml-4 space-y-1">
+              <li>Solde insuffisant</li>
+              <li>Plafond de paiement dépassé</li>
+              <li>Carte expirée</li>
+              <li>Erreur dans les informations saisies</li>
+            </ul>
+            <p class="mt-2">Vérifiez ces points et réessayez. Si le problème persiste, contactez votre banque ou <a href="/contact" class="text-maison-beige hover:underline">contactez-nous</a>.</p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Puis-je obtenir une facture ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Oui, une facture est automatiquement générée et envoyée par email après chaque commande. Vous pouvez également la télécharger depuis votre
+              <a href="/profile" class="text-maison-beige hover:underline">espace client</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produits -->
+    <div id="produits" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 flex items-center">
+        <svg class="w-6 h-6 mr-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        Produits
+      </h2>
+
+      <div class="space-y-4 faq-category">
+        <!-- Q1 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Vos produits sont-ils faits main ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Oui, tous nos produits sont fabriqués à la main par des artisans français. Chaque pièce est unique et peut présenter de légères variations qui font son authenticité et son charme.
+              <a href="/a-propos" class="text-maison-beige hover:underline">En savoir plus sur nos artisans</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Les couleurs correspondent-elles exactement aux photos ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Nous faisons de notre mieux pour que les photos soient fidèles à la réalité. Cependant, les couleurs peuvent varier légèrement selon l'écran utilisé et en raison du caractère artisanal
+              de nos produits. Si le produit ne vous convient pas, vous bénéficiez de 14 jours pour le retourner.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Comment entretenir mes produits ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Chaque produit est livré avec ses instructions d'entretien spécifiques. De manière générale, nous recommandons un nettoyage doux avec un chiffon humide pour la plupart de nos articles.
+              Évitez les produits abrasifs qui pourraient endommager les finitions artisanales.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Proposez-vous des produits sur mesure ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Pour certains produits, nous pouvons proposer des personnalisations. Contactez-nous à
+              <a href="mailto:contact@maisonmanoe.com" class="text-maison-beige hover:underline">contact@maisonmanoe.com</a> avec votre demande et nous vous indiquerons si c'est possible et les délais
+              associés.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compte -->
+    <div id="compte" class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 flex items-center">
+        <svg class="w-6 h-6 mr-2 text-maison-beige" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        Mon compte
+      </h2>
+
+      <div class="space-y-4 faq-category">
+        <!-- Q1 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Dois-je créer un compte pour commander ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Non, vous pouvez commander en tant qu'invité. Cependant, créer un compte vous permet de suivre vos commandes, sauvegarder vos adresses, gérer vos favoris et accéder à des offres
+              exclusives.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Comment modifier mes informations personnelles ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Connectez-vous à votre <a href="/profile" class="text-maison-beige hover:underline">espace client</a> et accédez à la section "Informations personnelles". Vous pourrez y modifier vos
+              informations, adresses et mot de passe.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">J'ai oublié mon mot de passe</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Cliquez sur "Mot de passe oublié" sur la page de connexion. Vous recevrez un email avec un lien pour réinitialiser votre mot de passe. Si vous ne recevez pas d'email, vérifiez vos spams
+              ou contactez-nous.
+            </p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="bg-white rounded-lg shadow faq-item">
+          <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+            <span class="font-semibold pr-4">Comment supprimer mon compte ?</span>
+            <svg class="w-5 h-5 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden p-6 pt-0 text-gray-700 leading-relaxed">
+            <p>
+              Pour supprimer votre compte, contactez-nous à <a href="mailto:dpo@maisonmanoe.com" class="text-maison-beige hover:underline">dpo@maisonmanoe.com</a> en précisant votre demande. Nous
+              procéderons à la suppression de vos données dans les meilleurs délais, conformément au RGPD.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Contact -->
+    <div class="bg-gradient-to-r from-maison-beige/30 to-maison-tan/30 rounded-lg p-8 text-center">
+      <h2 class="text-2xl font-bold mb-4">Vous n'avez pas trouvé votre réponse ?</h2>
+      <p class="text-gray-700 mb-6">Notre équipe est là pour vous aider</p>
+      <a href="/contact" class="inline-block px-8 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-medium"> Contactez-nous </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Accordion functionality
+  document.querySelectorAll(".faq-question").forEach((button) => {
+    button.addEventListener("click", () => {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector("svg");
+      const isOpen = !answer.classList.contains("hidden");
+
+      if (isOpen) {
+        answer.classList.add("hidden");
+        icon.style.transform = "rotate(0deg)";
+      } else {
+        answer.classList.remove("hidden");
+        icon.style.transform = "rotate(180deg)";
+      }
+    });
+  });
+
+  // Search functionality
+  const searchInput = document.getElementById("faq-search");
+  searchInput.addEventListener("input", (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach((item) => {
+      const question = item.querySelector(".faq-question span").textContent.toLowerCase();
+      const answer = item.querySelector(".faq-answer").textContent.toLowerCase();
+
+      if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+</script>
+{% endblock %}

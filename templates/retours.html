@@ -1,0 +1,162 @@
+{% extends "base.html" %} {% block title %}Retours & Échanges - Maison Manoé{% endblock %} {% block description %}Politique de retours et échanges de Maison Manoé — 14 jours pour changer d'avis,
+procédure simple et rapide.{% endblock %} {% block content %}
+<section class="py-12 px-4 md:px-8 lg:px-16 bg-gray-50 min-h-screen">
+  <div class="container mx-auto max-w-4xl">
+    <div class="bg-white rounded-lg shadow p-8 md:p-12">
+      <h1 class="text-3xl md:text-4xl font-bold mb-8">Retours & Échanges</h1>
+
+      <!-- Introduction -->
+      <div class="mb-8 p-6 bg-blue-50 border border-blue-200 rounded">
+        <p class="text-gray-800 leading-relaxed">
+          <strong>Vous avez changé d'avis ?</strong> Pas de problème ! Vous disposez de <strong>14 jours</strong> à compter de la réception de votre commande pour nous retourner vos articles.
+        </p>
+      </div>
+
+      <!-- Conditions de retour -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Conditions de retour</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">Pour être accepté, votre retour doit respecter les conditions suivantes :</p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+          <li>Le produit doit être retourné dans son <strong>emballage d'origine</strong></li>
+          <li>L'article doit être en <strong>parfait état</strong>, non utilisé et non endommagé</li>
+          <li>Tous les <strong>accessoires et étiquettes</strong> doivent être présents</li>
+          <li>Le délai de 14 jours doit être respecté (cachet de la poste faisant foi)</li>
+        </ul>
+      </article>
+
+      <!-- Procédure de retour -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Comment effectuer un retour ?</h2>
+
+        <div class="space-y-6">
+          <!-- Étape 1 -->
+          <div class="flex items-start">
+            <div class="w-10 h-10 bg-maison-beige rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">1</div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Contactez-nous</h3>
+              <p class="text-gray-700 leading-relaxed mb-2">
+                Envoyez un email à <a href="mailto:retour@maisonmanoe.com" class="text-maison-beige hover:underline">retour@maisonmanoe.com</a> en précisant :
+              </p>
+              <ul class="list-disc list-inside text-gray-700 ml-4 space-y-1">
+                <li>Votre numéro de commande</li>
+                <li>Le(s) produit(s) concerné(s)</li>
+                <li>Le motif du retour</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Étape 2 -->
+          <div class="flex items-start">
+            <div class="w-10 h-10 bg-maison-beige rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">2</div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Recevez votre étiquette retour</h3>
+              <p class="text-gray-700 leading-relaxed">Nous vous enverrons par email une étiquette de retour prépayée sous 24-48h.</p>
+            </div>
+          </div>
+
+          <!-- Étape 3 -->
+          <div class="flex items-start">
+            <div class="w-10 h-10 bg-maison-beige rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">3</div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Préparez votre colis</h3>
+              <p class="text-gray-700 leading-relaxed">Emballez soigneusement le(s) produit(s) dans leur emballage d'origine avec tous les accessoires.</p>
+            </div>
+          </div>
+
+          <!-- Étape 4 -->
+          <div class="flex items-start">
+            <div class="w-10 h-10 bg-maison-beige rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">4</div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Déposez votre colis</h3>
+              <p class="text-gray-700 leading-relaxed">Déposez votre colis dans un point relais ou bureau de poste avec l'étiquette de retour.</p>
+            </div>
+          </div>
+
+          <!-- Étape 5 -->
+          <div class="flex items-start">
+            <div class="w-10 h-10 bg-maison-beige rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">5</div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Recevez votre remboursement</h3>
+              <p class="text-gray-700 leading-relaxed">
+                Une fois le produit reçu et contrôlé, nous procéderons au remboursement sous <strong>14 jours</strong> par le même moyen de paiement utilisé lors de la commande.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Frais de retour -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Frais de retour</h2>
+        <div class="space-y-4">
+          <div class="p-4 bg-green-50 border border-green-200 rounded">
+            <p class="text-gray-800"><strong>✓ Retour gratuit</strong> : Si le produit est défectueux ou ne correspond pas à votre commande, nous prenons en charge les frais de retour.</p>
+          </div>
+          <div class="p-4 bg-orange-50 border border-orange-200 rounded">
+            <p class="text-gray-800"><strong>→ Retour à votre charge</strong> : En cas de simple changement d'avis, les frais de retour sont à votre charge (environ €5-10 selon le transporteur).</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Échanges -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Échanges</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">Nous n'effectuons pas d'échanges directs. Pour échanger un produit :</p>
+        <ol class="list-decimal list-inside text-gray-700 space-y-2 ml-4">
+          <li>Effectuez un retour selon la procédure ci-dessus</li>
+          <li>Une fois le remboursement reçu, passez une nouvelle commande pour l'article souhaité</li>
+        </ol>
+        <p class="text-gray-700 leading-relaxed mt-4">Cette méthode vous permet de choisir librement vos nouveaux articles et de bénéficier des offres en cours.</p>
+      </article>
+
+      <!-- Produits non retournables -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Produits non retournables</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">Pour des raisons d'hygiène et de sécurité, certains produits ne peuvent pas être retournés :</p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+          <li>Produits personnalisés ou sur mesure</li>
+          <li>Bougies et parfums d'ambiance déballés</li>
+          <li>Articles soldés avec mention "ni repris ni échangé"</li>
+        </ul>
+      </article>
+
+      <!-- Produits défectueux -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Produit défectueux ou endommagé</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">Si vous recevez un produit défectueux ou endommagé pendant le transport :</p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+          <li>Contactez-nous immédiatement à <a href="mailto:sav@maisonmanoe.com" class="text-maison-beige hover:underline">sav@maisonmanoe.com</a></li>
+          <li>Joignez des <strong>photos du produit et de l'emballage</strong></li>
+          <li>Nous vous proposerons un <strong>remplacement gratuit</strong> ou un <strong>remboursement intégral</strong></li>
+        </ul>
+        <p class="text-gray-700 leading-relaxed mt-4">Les frais de retour seront entièrement à notre charge.</p>
+      </article>
+
+      <!-- Garantie légale -->
+      <article class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Garantie légale</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Tous nos produits bénéficient de la garantie légale de conformité (2 ans) et de la garantie contre les vices cachés. Pour plus d'informations, consultez nos
+          <a href="/cgv" class="text-maison-beige hover:underline">Conditions Générales de Vente</a>.
+        </p>
+      </article>
+
+      <!-- Contact -->
+      <article class="mt-12 pt-8 border-t">
+        <h2 class="text-2xl font-bold mb-4">Besoin d'aide ?</h2>
+        <div class="text-gray-700 leading-relaxed space-y-2">
+          <p>Notre service client est à votre disposition pour vous accompagner :</p>
+          <p class="mt-4"><strong>Email retours :</strong> <a href="mailto:retour@maisonmanoe.com" class="text-maison-beige hover:underline">retour@maisonmanoe.com</a></p>
+          <p><strong>Service client :</strong> <a href="mailto:sav@maisonmanoe.com" class="text-maison-beige hover:underline">sav@maisonmanoe.com</a></p>
+          <p><strong>Téléphone :</strong> <a href="tel:+33123456789" class="text-maison-beige hover:underline">01 23 45 67 89</a> (Lun-Ven : 9h-18h)</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Retour -->
+    <div class="mt-8 text-center">
+      <a href="/" class="text-maison-beige hover:underline">← Retour à l'accueil</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

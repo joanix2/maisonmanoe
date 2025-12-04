@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Maison Manoé{% endblock %}</title>
+    <meta name="description" content="{% block description %}Maison Manoé - L'artisanat français d'exception{% endblock %}" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "maison-beige": "#d3c2a1",
+              "maison-tan": "#cbb79a",
+            },
+          },
+        },
+      };
+    </script>
+
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="font-sans antialiased">
+    {% block content %}
+    <div class="h-screen flex">
+      <!-- Formulaire gauche -->
+      <div class="w-full lg:w-1/2 flex items-center justify-center px-8 py-12 bg-white">
+        <div class="w-full max-w-md">
+          <!-- Logo et retour -->
+          <div class="mb-8">
+            <a href="/" class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Retour à l'accueil
+            </a>
+          </div>
+
+          <!-- Titre -->
+          <div class="mb-8">
+            <h1 class="text-3xl font-bold mb-2 lowercase">{% block page_title %}{% endblock %}</h1>
+            <p class="text-gray-600">{% block page_subtitle %}{% endblock %}</p>
+          </div>
+
+          <!-- Contenu du formulaire (bloc) -->
+          {% block form_content %}{% endblock %}
+
+          <!-- Liens additionnels (bloc) -->
+          {% block additional_links %}{% endblock %}
+        </div>
+      </div>
+
+      <!-- Image droite -->
+      <div class="hidden lg:block lg:w-1/2 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-maison-beige/30 to-maison-tan/30"></div>
+        <img src="https://picsum.photos/800/1200?random={% block image_id %}auth{% endblock %}" alt="Maison Manoé" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 flex items-center justify-center text-white text-center px-8">
+          <div>
+            <h2 class="text-4xl font-bold mb-4 drop-shadow-lg">Maison Manoé</h2>
+            <p class="text-xl drop-shadow-lg">L'artisanat français d'exception</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>
