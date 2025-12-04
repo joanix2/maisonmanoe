@@ -108,6 +108,18 @@ async def connexion(request: Request):
     return templates.TemplateResponse("connexion.html", {"request": request})
 
 
+@app.get("/reset-password", response_class=HTMLResponse)
+async def reset_password(request: Request):
+    """Page de demande de réinitialisation du mot de passe"""
+    return templates.TemplateResponse("reset-password.html", {"request": request})
+
+
+@app.get("/new-password", response_class=HTMLResponse)
+async def new_password(request: Request):
+    """Page de création d'un nouveau mot de passe"""
+    return templates.TemplateResponse("new-password.html", {"request": request})
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
