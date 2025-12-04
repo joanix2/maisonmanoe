@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Maison Manoé{% endblock %}</title>
+    <meta name="description" content="{% block description %}Maison Manoé - Art de vivre et décoration d'intérieur française.{% endblock %}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "maison-beige": "#d3c2a1",
+              "maison-tan": "#cbb79a",
+            },
+          },
+        },
+      };
+    </script>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="font-sans text-gray-900 bg-white">
+    <!-- HEADER - Navigation principale et promotion -->
+    <header class="sticky top-0 z-50 bg-maison-beige shadow-sm">
+      <!-- Bandeau noir pour les promotions -->
+      <div class="bg-black text-white text-center py-2 px-4">
+        <p class="text-sm font-medium">code promo: bienvenue10 - 10% sur votre première commande</p>
+      </div>
+      <!-- Navigation principale -->
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <!-- Logo à gauche -->
+          <a href="/" class="text-2xl font-bold lowercase hover:text-gray-700 transition-colors">Maison Manoé</a>
+          <!-- Navigation au centre/droite -->
+          <nav class="flex items-center gap-8" aria-label="Navigation principale">
+            <a href="/" class="lowercase font-medium hover:text-gray-700 transition-colors">produits</a>
+            <a href="/" class="lowercase font-medium hover:text-gray-700 transition-colors">nouveautés</a>
+            <a href="/" class="lowercase font-medium hover:text-gray-700 transition-colors">promotions</a>
+            <!-- Icônes à droite -->
+            <div class="flex items-center gap-4 ml-4 border-l border-gray-400 pl-4">
+              <a href="/recherche" aria-label="Rechercher" class="hover:text-gray-700 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </a>
+              <a href="/favoris" aria-label="Mes favoris" class="hover:text-gray-700 transition-colors relative">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+                <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">8</span>
+              </a>
+              <a href="/profile" aria-label="Compte utilisateur" class="hover:text-gray-700 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </a>
+              <a href="/panier" aria-label="Panier" class="hover:text-gray-700 transition-colors relative">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+                <span class="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    {% block content %}{% endblock %}
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 md:px-8" role="contentinfo">
+      <div class="container mx-auto max-w-7xl">
+        <h3 class="text-white text-2xl font-bold mb-8 lowercase">Maison Manoé</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div>
+            <h4 class="text-white font-semibold text-lg mb-3">Navigation</h4>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+              <li><a href="/recherche" class="text-gray-400 hover:text-white transition-colors">Produits</a></li>
+              <li><a href="/a-propos" class="text-gray-400 hover:text-white transition-colors">À propos</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold text-lg mb-3">Support</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Livraison</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Retours</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold text-lg mb-3">Légal</h4>
+            <ul class="space-y-2">
+              <li><a href="/confidentialite" class="text-gray-400 hover:text-white transition-colors">Confidentialité</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors">CGV</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold text-lg mb-3">Newsletter</h4>
+            <p class="text-gray-400 leading-relaxed mb-3">Restez informé de nos nouveautés</p>
+            <form class="flex gap-2">
+              <input type="email" placeholder="Email" class="flex-1 px-3 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-maison-beige focus:outline-none" />
+              <button type="submit" class="px-4 py-2 bg-maison-beige text-gray-900 rounded font-semibold hover:bg-maison-tan transition-colors">OK</button>
+            </form>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
+          <p>&copy; 2025 Maison Manoé. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

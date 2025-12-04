@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Maison Manoé - Décoration d'intérieur artisanale{% endblock %}
+
+{% block description %}Maison Manoé - Art de vivre et décoration d'intérieur française. Pièces authentiques fabriquées à la main par des artisans passionnés.{% endblock %}
+
+{% block content %}
+    <!-- SECTION HERO - Bannière principale avec image de fond -->
+    <section class="relative h-[80vh] bg-cover bg-center flex items-center justify-center text-white text-center" style="background-image: url('https://picsum.photos/1920/1080')" role="banner">
+      <div class="z-10">
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Tendance du moment</h1>
+        <p class="text-xl md:text-2xl mb-8 drop-shadow-md">Nouvelle collection</p>
+        <button class="bg-black text-white px-8 py-3 rounded hover:bg-gray-800 transition-colors font-medium">Découvrir</button>
+      </div>
+      <div class="absolute inset-0 bg-black/30"></div>
+    </section>
+
+    <!-- SECTION DÉCOUVRIR LES NOUVEAUTÉS - Layout avec produit principal et sidebar -->
+    <section class="py-16 px-4 md:px-8 lg:px-16 bg-white" aria-labelledby="nouveautes">
+      <h2 id="nouveautes" class="text-3xl md:text-4xl font-bold text-center mb-12 lowercase text-gray-900">Découvrir les nouveautés</h2>
+      <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl">
+        <!-- Produit principal mis en avant - GAUCHE -->
+        <div class="relative group bg-white">
+          <div class="relative overflow-hidden rounded-sm">
+            <img src="https://picsum.photos/600/700" alt="Produit vedette" class="w-full h-[500px] object-cover" />
+            <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
+              <svg class="w-6 h-6 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
+          </div>
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-gray-900 mb-1">Featured product</h3>
+            <p class="text-sm text-gray-500 mb-2">Description of featured product</p>
+            <p class="text-lg font-bold text-gray-900">€10.99</p>
+          </div>
+        </div>
+
+        <!-- Produits en sidebar - DROITE -->
+        <div class="flex flex-col gap-6">
+          <!-- Produit sidebar 1 - HAUT -->
+          <article class="bg-white">
+            <div class="relative overflow-hidden rounded-sm">
+              <img src="https://picsum.photos/600/240" alt="Produit 1" class="w-full h-[240px] object-cover mb-4" />
+              <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
+                <svg class="w-5 h-5 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </button>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold text-gray-900 mb-1">Product</h4>
+              <p class="text-sm text-gray-500 mb-2">Description of top product</p>
+              <p class="text-lg font-bold text-gray-900">€10.99</p>
+            </div>
+          </article>
+
+          <!-- Produit sidebar 2 - BAS -->
+          <article class="bg-white">
+            <div class="relative overflow-hidden rounded-sm">
+              <img src="https://picsum.photos/600/241" alt="Produit 2" class="w-full h-[240px] object-cover mb-4" />
+              <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
+                <svg class="w-5 h-5 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </button>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold text-gray-900 mb-1">Product</h4>
+              <p class="text-sm text-gray-500 mb-2">Description of lower product</p>
+              <p class="text-lg font-bold text-gray-900">€10.99</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION À PROPOS - Présentation de la marque -->
+    <section class="bg-maison-tan py-20 px-4 md:px-8" aria-labelledby="about">
+      <div class="container mx-auto max-w-4xl">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 id="about" class="text-3xl md:text-4xl font-bold mb-6 lowercase">à propos de maison manoé</h2>
+          </div>
+          <div class="text-right">
+            <p class="text-lg leading-relaxed text-gray-800">
+              Maison Manoé est une marque française dédiée à l'art de vivre et à la décoration d'intérieur. Nous sélectionnons des pièces authentiques, fabriquées à la main par des artisans passionnés.
+              Chaque création raconte une histoire, mêlant esthétique contemporaine et traditions intemporelles. Notre mission : sublimer votre quotidien avec des objets qui ont une âme.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

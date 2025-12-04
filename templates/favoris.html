@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block title %}Mes Favoris - Maison Manoé{% endblock %} {% block description %}Retrouvez tous vos produits favoris de décoration d'intérieur.{% endblock %} {% block content
+%}
+<!-- SECTION FAVORIS -->
+<section class="py-12 px-4 md:px-8 lg:px-16 min-h-screen bg-gray-50">
+  <div class="container mx-auto max-w-7xl">
+    <!-- En-tête -->
+    <div class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold mb-2 lowercase">Mes favoris</h1>
+      <p class="text-gray-600"><span class="font-semibold">8</span> produits dans votre liste de favoris</p>
+    </div>
+
+    <!-- Grille de produits favoris -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {% for i in range(1, 9) %}
+      <!-- Produit favori {{ i }} -->
+      <article class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+        <a href="#" class="block">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/400/500?random={{ i }}" alt="Produit favori {{ i }}" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300" />
+            <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Retirer des favoris">
+              <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-900 mb-1">Produit {{ i }}</h3>
+            <p class="text-sm text-gray-500 mb-3">Description du produit favori</p>
+            <div class="flex items-center justify-between">
+              <p class="text-lg font-bold text-gray-900">€{{ 20 + i * 5 }}.99</p>
+              <button class="px-4 py-2 bg-black text-white text-sm rounded hover:bg-gray-800 transition-colors">Ajouter au panier</button>
+            </div>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Message si liste vide (à afficher conditionnellement) -->
+    <!-- 
+        <div class="text-center py-16">
+          <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Aucun favori pour le moment</h2>
+          <p class="text-gray-600 mb-6">Ajoutez vos produits préférés à votre liste de favoris</p>
+          <a href="/recherche" class="inline-block px-8 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-medium">
+            Découvrir nos produits
+          </a>
+        </div>
+        -->
+  </div>
+</section>
+{% endblock %}
