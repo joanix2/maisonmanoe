@@ -1,0 +1,289 @@
+{% extends "base.html" %} {% block title %}Mon panier - Maison Manoé{% endblock %} {% block description %}Votre panier d'achat — finalisez votre commande de décoration d'intérieur.{% endblock %} {%
+block content %}
+<section class="py-12 px-4 md:px-8 lg:px-16 bg-gray-50 min-h-screen">
+  <div class="container mx-auto max-w-7xl">
+    <h1 class="text-3xl md:text-4xl font-bold mb-8 lowercase">Mon panier</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Liste des produits -->
+      <div class="lg:col-span-2 space-y-4" id="cart-items">
+        <!-- Produit 1 -->
+        <article class="bg-white rounded-lg shadow p-4 flex gap-4" data-product-id="1">
+          <img src="https://picsum.photos/150/150?random=1" alt="Vase en céramique" class="w-24 h-24 object-cover rounded" />
+          <div class="flex-grow">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-semibold text-lg">Vase en céramique</h3>
+                <p class="text-sm text-gray-500">Artisanat français</p>
+              </div>
+              <button class="remove-item text-gray-400 hover:text-red-500 transition-colors" aria-label="Retirer du panier">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button class="qty-decrease w-8 h-8 border rounded hover:bg-gray-100 transition-colors">−</button>
+                <span class="qty-value font-medium w-8 text-center">1</span>
+                <button class="qty-increase w-8 h-8 border rounded hover:bg-gray-100 transition-colors">+</button>
+              </div>
+              <p class="item-price font-bold text-lg" data-unit-price="45.99">€45.99</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Produit 2 -->
+        <article class="bg-white rounded-lg shadow p-4 flex gap-4" data-product-id="2">
+          <img src="https://picsum.photos/150/150?random=2" alt="Bougeoir en laiton" class="w-24 h-24 object-cover rounded" />
+          <div class="flex-grow">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-semibold text-lg">Bougeoir en laiton</h3>
+                <p class="text-sm text-gray-500">Design contemporain</p>
+              </div>
+              <button class="remove-item text-gray-400 hover:text-red-500 transition-colors" aria-label="Retirer du panier">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button class="qty-decrease w-8 h-8 border rounded hover:bg-gray-100 transition-colors">−</button>
+                <span class="qty-value font-medium w-8 text-center">2</span>
+                <button class="qty-increase w-8 h-8 border rounded hover:bg-gray-100 transition-colors">+</button>
+              </div>
+              <p class="item-price font-bold text-lg" data-unit-price="32.50">€65.00</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Produit 3 -->
+        <article class="bg-white rounded-lg shadow p-4 flex gap-4" data-product-id="3">
+          <img src="https://picsum.photos/150/150?random=3" alt="Coussin brodé" class="w-24 h-24 object-cover rounded" />
+          <div class="flex-grow">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-semibold text-lg">Coussin brodé</h3>
+                <p class="text-sm text-gray-500">Lin naturel</p>
+              </div>
+              <button class="remove-item text-gray-400 hover:text-red-500 transition-colors" aria-label="Retirer du panier">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button class="qty-decrease w-8 h-8 border rounded hover:bg-gray-100 transition-colors">−</button>
+                <span class="qty-value font-medium w-8 text-center">1</span>
+                <button class="qty-increase w-8 h-8 border rounded hover:bg-gray-100 transition-colors">+</button>
+              </div>
+              <p class="item-price font-bold text-lg" data-unit-price="28.50">€28.50</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Message panier vide (caché par défaut) -->
+        <div id="empty-cart" class="hidden bg-white rounded-lg shadow p-8 text-center">
+          <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Votre panier est vide</h2>
+          <p class="text-gray-600 mb-6">Découvrez notre collection et ajoutez des produits à votre panier</p>
+          <a href="/recherche" class="inline-block px-8 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-medium"> Découvrir nos produits </a>
+        </div>
+      </div>
+
+      <!-- Résumé de la commande -->
+      <aside class="lg:col-span-1">
+        <div class="bg-white rounded-lg shadow p-6 sticky top-24">
+          <h2 class="text-xl font-bold mb-4">Résumé de la commande</h2>
+
+          <div class="space-y-3 mb-4 pb-4 border-b">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Sous-total (<span id="item-count">3</span> articles)</span>
+              <span id="subtotal" class="font-medium">€139.49</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Livraison</span>
+              <span id="shipping" class="font-medium">€5.90</span>
+            </div>
+          </div>
+
+          <div class="flex justify-between text-lg font-bold mb-6">
+            <span>Total</span>
+            <span id="total">€145.39</span>
+          </div>
+
+          <!-- Code promo -->
+          <div class="mb-6">
+            <label for="promo-code" class="block text-sm font-medium mb-2">Code promo</label>
+            <div class="flex gap-2">
+              <input type="text" id="promo-code" placeholder="BIENVENUE10" class="flex-1 px-3 py-2 border rounded focus:border-maison-beige focus:outline-none" />
+              <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors">Appliquer</button>
+            </div>
+          </div>
+
+          <button id="checkout-btn" class="w-full bg-black text-white py-3 rounded hover:bg-gray-800 transition-colors font-medium mb-3">Passer la commande</button>
+
+          <a href="/recherche" class="block text-center text-sm text-maison-beige hover:underline"> Continuer mes achats </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+  // State Machine pour le panier
+  class CartStateMachine {
+    constructor() {
+      this.cart = this.loadCart();
+      this.init();
+    }
+
+    init() {
+      // Event listeners pour les boutons de quantité
+      document.querySelectorAll(".qty-increase").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const article = e.target.closest("article");
+          this.updateQuantity(article, 1);
+        });
+      });
+
+      document.querySelectorAll(".qty-decrease").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const article = e.target.closest("article");
+          this.updateQuantity(article, -1);
+        });
+      });
+
+      // Event listeners pour retirer un produit
+      document.querySelectorAll(".remove-item").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const article = e.target.closest("article");
+          this.removeItem(article);
+        });
+      });
+
+      // Calculer le total initial
+      this.updateTotals();
+    }
+
+    updateQuantity(article, delta) {
+      const qtyElement = article.querySelector(".qty-value");
+      const priceElement = article.querySelector(".item-price");
+      const unitPrice = parseFloat(priceElement.dataset.unitPrice);
+
+      let currentQty = parseInt(qtyElement.textContent);
+      let newQty = currentQty + delta;
+
+      // Ne pas descendre en dessous de 1
+      if (newQty < 1) {
+        newQty = 1;
+      }
+
+      // Mettre à jour l'affichage
+      qtyElement.textContent = newQty;
+      const newPrice = (unitPrice * newQty).toFixed(2);
+      priceElement.textContent = `€${newPrice}`;
+
+      // Mettre à jour les totaux
+      this.updateTotals();
+
+      // Sauvegarder dans le localStorage
+      this.saveCart();
+    }
+
+    removeItem(article) {
+      // Animation de sortie
+      article.style.transition = "opacity 0.3s, transform 0.3s";
+      article.style.opacity = "0";
+      article.style.transform = "translateX(-20px)";
+
+      setTimeout(() => {
+        article.remove();
+        this.updateTotals();
+        this.checkEmptyCart();
+        this.saveCart();
+      }, 300);
+    }
+
+    updateTotals() {
+      const articles = document.querySelectorAll("#cart-items article[data-product-id]");
+      let subtotal = 0;
+      let itemCount = 0;
+
+      articles.forEach((article) => {
+        const priceElement = article.querySelector(".item-price");
+        const qtyElement = article.querySelector(".qty-value");
+        const unitPrice = parseFloat(priceElement.dataset.unitPrice);
+        const qty = parseInt(qtyElement.textContent);
+
+        subtotal += unitPrice * qty;
+        itemCount += qty;
+      });
+
+      const shipping = subtotal > 0 ? 5.9 : 0;
+      const total = subtotal + shipping;
+
+      // Mettre à jour l'affichage
+      document.getElementById("subtotal").textContent = `€${subtotal.toFixed(2)}`;
+      document.getElementById("shipping").textContent = subtotal > 0 ? `€${shipping.toFixed(2)}` : "Gratuit";
+      document.getElementById("total").textContent = `€${total.toFixed(2)}`;
+      document.getElementById("item-count").textContent = itemCount;
+
+      // Mettre à jour le badge du panier dans le header
+      const cartBadge = document.querySelector('a[href="/panier"] .absolute');
+      if (cartBadge) {
+        cartBadge.textContent = itemCount;
+      }
+    }
+
+    checkEmptyCart() {
+      const articles = document.querySelectorAll("#cart-items article[data-product-id]");
+      const emptyMessage = document.getElementById("empty-cart");
+
+      if (articles.length === 0) {
+        emptyMessage.classList.remove("hidden");
+      }
+    }
+
+    saveCart() {
+      // Récupérer les données du panier
+      const articles = document.querySelectorAll("#cart-items article[data-product-id]");
+      const cartData = [];
+
+      articles.forEach((article) => {
+        const productId = article.dataset.productId;
+        const qty = parseInt(article.querySelector(".qty-value").textContent);
+        cartData.push({ productId, qty });
+      });
+
+      localStorage.setItem("maison_manoe_cart", JSON.stringify(cartData));
+    }
+
+    loadCart() {
+      const saved = localStorage.getItem("maison_manoe_cart");
+      return saved ? JSON.parse(saved) : [];
+    }
+  }
+
+  // Initialiser au chargement de la page
+  document.addEventListener("DOMContentLoaded", () => {
+    const cartSM = new CartStateMachine();
+
+    // Gérer le bouton de commande
+    document.getElementById("checkout-btn").addEventListener("click", () => {
+      // Rediriger vers la page de paiement
+      window.location.href = "/paiement";
+    });
+  });
+</script>
+{% endblock %}

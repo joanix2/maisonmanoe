@@ -60,6 +60,12 @@ async def paiement(request: Request):
     return templates.TemplateResponse("paiement.html", {"request": request})
 
 
+@app.get("/validation-paiement", response_class=HTMLResponse)
+async def validation_paiement(request: Request):
+    """Page de validation du paiement"""
+    return templates.TemplateResponse("validation-paiement.html", {"request": request})
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)

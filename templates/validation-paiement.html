@@ -1,0 +1,207 @@
+{% extends "base.html" %} {% block title %}Commande confirmée - Maison Manoé{% endblock %} {% block description %}Merci pour votre commande ! Votre paiement a été accepté avec succès.{% endblock %} {%
+block content %}
+<section class="py-12 px-4 md:px-8 lg:px-16 bg-gray-50 min-h-screen">
+  <div class="container mx-auto max-w-4xl">
+    <!-- Message de confirmation -->
+    <div class="bg-white rounded-lg shadow-lg p-8 md:p-12 text-center mb-8">
+      <!-- Icône de succès -->
+      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">Commande confirmée !</h1>
+      <p class="text-lg text-gray-600 mb-2">Merci pour votre confiance</p>
+      <p class="text-gray-500">Votre commande a été validée et sera expédiée dans les plus brefs délais</p>
+
+      <div class="mt-8 p-4 bg-gray-50 rounded inline-block">
+        <p class="text-sm text-gray-600 mb-1">Numéro de commande</p>
+        <p class="text-2xl font-bold" id="order-number">CMD-123456789</p>
+      </div>
+
+      <p class="mt-6 text-sm text-gray-600">Un email de confirmation a été envoyé à <span id="customer-email" class="font-medium text-black">votre@email.com</span></p>
+    </div>
+
+    <!-- Détails de la commande -->
+    <div class="bg-white rounded-lg shadow p-6 md:p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">Détails de votre commande</h2>
+
+      <!-- Produits commandés -->
+      <div class="mb-6">
+        <h3 class="font-semibold mb-4 text-lg">Articles commandés</h3>
+        <div class="space-y-4" id="order-items">
+          <!-- Les articles seront chargés dynamiquement -->
+        </div>
+      </div>
+
+      <!-- Totaux -->
+      <div class="border-t pt-4 space-y-2">
+        <div class="flex justify-between">
+          <span class="text-gray-600">Sous-total</span>
+          <span id="order-subtotal">€139.49</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">Livraison</span>
+          <span id="order-shipping">€5.90</span>
+        </div>
+        <div class="flex justify-between text-lg font-bold pt-2 border-t">
+          <span>Total</span>
+          <span id="order-total">€145.39</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adresse de livraison -->
+    <div class="bg-white rounded-lg shadow p-6 md:p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-4">Adresse de livraison</h2>
+      <div id="shipping-address" class="text-gray-700 leading-relaxed">
+        <!-- L'adresse sera chargée dynamiquement -->
+      </div>
+    </div>
+
+    <!-- Prochaines étapes -->
+    <div class="bg-gradient-to-r from-maison-beige/20 to-maison-tan/20 rounded-lg p-6 md:p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">Et maintenant ?</h2>
+
+      <div class="space-y-4">
+        <div class="flex items-start">
+          <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">1</div>
+          <div>
+            <h3 class="font-semibold mb-1">Préparation de votre commande</h3>
+            <p class="text-sm text-gray-600">Notre équipe prépare vos articles avec soin</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">2</div>
+          <div>
+            <h3 class="font-semibold mb-1">Expédition</h3>
+            <p class="text-sm text-gray-600">Vous recevrez un email avec le numéro de suivi</p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold">3</div>
+          <div>
+            <h3 class="font-semibold mb-1">Livraison</h3>
+            <p class="text-sm text-gray-600" id="delivery-estimate">Délai estimé : 3-5 jours ouvrés</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex flex-col md:flex-row gap-4 justify-center">
+      <a href="/profile" class="px-8 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors font-medium text-center"> Voir mes commandes </a>
+      <a href="/" class="px-8 py-3 border border-black text-black rounded hover:bg-gray-50 transition-colors font-medium text-center"> Retour à l'accueil </a>
+    </div>
+
+    <!-- Support -->
+    <div class="mt-12 text-center text-sm text-gray-600">
+      <p class="mb-2">Besoin d'aide ? Nous sommes là pour vous</p>
+      <a href="mailto:contact@maisonmanoe.com" class="text-maison-beige hover:underline">contact@maisonmanoe.com</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Charger et afficher les informations de commande
+  document.addEventListener("DOMContentLoaded", () => {
+    const orderData = loadOrderData();
+
+    if (orderData) {
+      displayOrderInfo(orderData);
+
+      // Vider le panier après confirmation
+      localStorage.removeItem("maison_manoe_cart");
+
+      // Mettre à jour le badge du panier
+      const cartBadge = document.querySelector('a[href="/panier"] .absolute');
+      if (cartBadge) {
+        cartBadge.textContent = "0";
+      }
+    } else {
+      // Si pas de données de commande, afficher des données par défaut
+      displayDefaultOrderInfo();
+    }
+  });
+
+  function loadOrderData() {
+    const saved = localStorage.getItem("maison_manoe_last_order");
+    return saved ? JSON.parse(saved) : null;
+  }
+
+  function displayOrderInfo(order) {
+    // Numéro de commande
+    document.getElementById("order-number").textContent = order.orderId;
+
+    // Email
+    document.getElementById("customer-email").textContent = order.email;
+
+    // Totaux
+    document.getElementById("order-subtotal").textContent = `€${order.subtotal.toFixed(2)}`;
+    document.getElementById("order-shipping").textContent = order.shippingCost === 0 ? "Gratuit" : `€${order.shippingCost.toFixed(2)}`;
+    document.getElementById("order-total").textContent = `€${order.total.toFixed(2)}`;
+
+    // Adresse de livraison
+    const shippingHTML = `
+    <p class="font-semibold">${order.shipping.prenom} ${order.shipping.nom}</p>
+    <p>${order.shipping.adresse}</p>
+    ${order.shipping.complement ? `<p>${order.shipping.complement}</p>` : ""}
+    <p>${order.shipping.codePostal} ${order.shipping.ville}</p>
+    <p>${order.shipping.pays}</p>
+    <p class="mt-2">Tél : ${order.shipping.telephone}</p>
+  `;
+    document.getElementById("shipping-address").innerHTML = shippingHTML;
+
+    // Délai de livraison
+    const deliveryTimes = {
+      standard: "3-5 jours ouvrés",
+      express: "24-48 heures",
+      gratuite: "7-10 jours ouvrés",
+    };
+    const deliveryTime = deliveryTimes[order.shippingMethod] || "3-5 jours ouvrés";
+    document.getElementById("delivery-estimate").textContent = `Délai estimé : ${deliveryTime}`;
+
+    // Articles (on utilise les produits par défaut pour la démo)
+    displayOrderItems();
+  }
+
+  function displayDefaultOrderInfo() {
+    // Afficher des informations par défaut si pas de commande sauvegardée
+    document.getElementById("order-number").textContent = "CMD-" + Date.now();
+    document.getElementById("customer-email").textContent = "votre@email.com";
+    displayOrderItems();
+  }
+
+  function displayOrderItems() {
+    // Articles de démonstration
+    const items = [
+      { name: "Vase en céramique", qty: 1, price: 45.99, image: "https://picsum.photos/80/80?random=1" },
+      { name: "Bougeoir en laiton", qty: 2, price: 32.5, image: "https://picsum.photos/80/80?random=2" },
+      { name: "Coussin brodé", qty: 1, price: 28.5, image: "https://picsum.photos/80/80?random=3" },
+    ];
+
+    const itemsHTML = items
+      .map(
+        (item) => `
+    <div class="flex gap-4 pb-4 border-b last:border-b-0 last:pb-0">
+      <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded" />
+      <div class="flex-grow">
+        <h4 class="font-semibold">${item.name}</h4>
+        <p class="text-sm text-gray-600">Quantité : ${item.qty}</p>
+      </div>
+      <div class="text-right">
+        <p class="font-bold">€${(item.price * item.qty).toFixed(2)}</p>
+        <p class="text-sm text-gray-600">€${item.price.toFixed(2)} / unité</p>
+      </div>
+    </div>
+  `
+      )
+      .join("");
+
+    document.getElementById("order-items").innerHTML = itemsHTML;
+  }
+</script>
+{% endblock %}
