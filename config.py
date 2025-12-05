@@ -7,7 +7,11 @@ class Settings(BaseSettings):
     # Application
     app_env: str = "development"
     debug: bool = True
-    secret_key: str = "change-me-in-production"
+    secret_key: str = "change-me-in-production-09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+    
+    # JWT Authentication
+    algorithm: str = "HS256"
+    access_token_expire_minutes: int = 30
     
     # Neo4j
     neo4j_uri: str = "bolt://localhost:7687"

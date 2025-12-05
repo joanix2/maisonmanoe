@@ -300,12 +300,13 @@ personnalisée et suivre vos commandes.{% endblock %} {% block page_title %}Cré
   });
 
   // Form submission
-  document.getElementById("inscription-form").addEventListener("submit", function (e) {
+  document.getElementById("inscription-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const password = document.getElementById("password").value;
     const confirm = document.getElementById("password-confirm").value;
     const errorDiv = document.getElementById("error-message");
+    const acceptTerms = document.getElementById("accept-terms").checked;
 
     // Validation
     if (password !== confirm) {
@@ -316,6 +317,12 @@ personnalisée et suivre vos commandes.{% endblock %} {% block page_title %}Cré
 
     if (password.length < 8) {
       errorDiv.textContent = "Le mot de passe doit contenir au moins 8 caractères.";
+      errorDiv.classList.remove("hidden");
+      return;
+    }
+
+    if (!acceptTerms) {
+      errorDiv.textContent = "Vous devez accepter les conditions générales de vente.";
       errorDiv.classList.remove("hidden");
       return;
     }
@@ -332,12 +339,48 @@ personnalisée et suivre vos commandes.{% endblock %} {% block page_title %}Cré
     submitText.classList.add("hidden");
     submitSpinner.classList.remove("hidden");
 
-    // Simulate API call
-    setTimeout(() => {
-      // Hide form, show success
-      document.getElementById("inscription-form").classList.add("hidden");
-      document.getElementById("success-message").classList.remove("hidden");
-    }, 2000);
+    try {
+      // Prepare data
+      const formData = {
+        email: document.getElementById("email").value,
+        password: password,
+        first_name: document.getElementById("prenom").value,
+        last_name: document.getElementById("nom").value,
+        phone: document.getElementById("telephone").value || null,
+      };
+
+      // Call API
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Hide form, show success
+        document.getElementById("inscription-form").classList.add("hidden");
+        document.getElementById("success-message").classList.remove("hidden");
+      } else {
+        // Show error
+        submitBtn.disabled = false;
+        submitText.classList.remove("hidden");
+        submitSpinner.classList.add("hidden");
+        errorDiv.textContent = data.detail || "Une erreur est survenue lors de l'inscription.";
+        errorDiv.classList.remove("hidden");
+      }
+    } catch (error) {
+      // Network or other error
+      submitBtn.disabled = false;
+      submitText.classList.remove("hidden");
+      submitSpinner.classList.add("hidden");
+      errorDiv.textContent = "Une erreur est survenue. Veuillez réessayer.";
+      errorDiv.classList.remove("hidden");
+      console.error("Registration error:", error);
+    }
   });
 </script>
 {% endblock %} {% block additional_links %}

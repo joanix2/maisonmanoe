@@ -15,6 +15,16 @@ from app.models.promo import (
     Promo,
     PromoCreate
 )
+from app.models.user import (
+    UserBase,
+    User,
+    UserCreate,
+    UserUpdate,
+    UserInDB,
+    Token,
+    TokenData,
+    LoginRequest
+)
 
 __all__ = [
     # Product models
@@ -27,5 +37,14 @@ __all__ = [
     # Promo models
     "PromoBase",
     "Promo",
-    "PromoCreate"
+    "PromoCreate",
+    # User models
+    "UserBase",
+    "User",
+    "UserCreate",
+    "UserUpdate",
+    "UserInDB",
+    "Token",
+    "TokenData",
+    "LoginRequest"
 ]

@@ -121,16 +121,32 @@
       </div>
     </footer>
 
+    <!-- Auth utilities -->
+    <script src="/static/js/auth.js"></script>
+
     <script>
-      // Check if user is logged in and update profile icon
+      // Initialize auth UI on page load
       document.addEventListener("DOMContentLoaded", function () {
         const userIcon = document.getElementById("user-icon");
-        const isLoggedIn = localStorage.getItem("maison_manoe_auth");
 
-        if (isLoggedIn && userIcon) {
-          userIcon.href = "/profile";
+        // Update auth UI
+        if (window.MaisonManoeAuth) {
+          window.MaisonManoeAuth.updateAuthUI();
+
+          // Update user icon link
+          if (window.MaisonManoeAuth.isAuthenticated() && userIcon) {
+            userIcon.href = "/profile";
+
+            // Add user name tooltip
+            const user = window.MaisonManoeAuth.getCurrentUser();
+            if (user) {
+              userIcon.setAttribute("title", `${user.first_name} ${user.last_name}`);
+            }
+          }
         }
       });
     </script>
+
+    {% block extra_scripts %}{% endblock %}
   </body>
 </html>

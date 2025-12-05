@@ -109,11 +109,12 @@ favoris.{% endblock %} {% block page_title %}Connexion{% endblock %} {% block pa
   });
 
   // Form submission
-  document.getElementById("connexion-form").addEventListener("submit", function (e) {
+  document.getElementById("connexion-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const remember = document.getElementById("remember").checked;
     const errorDiv = document.getElementById("error-message");
 
     // Basic validation
@@ -135,22 +136,38 @@ favoris.{% endblock %} {% block page_title %}Connexion{% endblock %} {% block pa
     submitText.classList.add("hidden");
     submitSpinner.classList.remove("hidden");
 
-    // Simulate API call
-    setTimeout(() => {
-      // For demo: simulate successful login
-      const success = Math.random() > 0.3; // 70% success rate
+    try {
+      // Call API
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
 
-      if (success) {
-        // Store auth token (mock)
-        localStorage.setItem("maison_manoe_auth", "mock_token_" + Date.now());
-        localStorage.setItem(
-          "maison_manoe_user",
-          JSON.stringify({
-            email: email,
-            nom: "Doe",
-            prenom: "John",
-          })
-        );
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store auth token
+        const storage = remember ? localStorage : sessionStorage;
+        storage.setItem("maison_manoe_token", data.access_token);
+        storage.setItem("maison_manoe_token_type", data.token_type);
+
+        // Fetch user profile
+        const profileResponse = await fetch("/api/auth/me", {
+          headers: {
+            Authorization: `Bearer ${data.access_token}`,
+          },
+        });
+
+        if (profileResponse.ok) {
+          const user = await profileResponse.json();
+          storage.setItem("maison_manoe_user", JSON.stringify(user));
+        }
 
         // Redirect to profile or home
         const returnUrl = new URLSearchParams(window.location.search).get("return") || "/profile";
@@ -160,14 +177,22 @@ favoris.{% endblock %} {% block page_title %}Connexion{% endblock %} {% block pa
         submitBtn.disabled = false;
         submitText.classList.remove("hidden");
         submitSpinner.classList.add("hidden");
-        errorDiv.textContent = "Email ou mot de passe incorrect.";
+        errorDiv.textContent = data.detail || "Email ou mot de passe incorrect.";
         errorDiv.classList.remove("hidden");
       }
-    }, 1500);
+    } catch (error) {
+      // Network or other error
+      submitBtn.disabled = false;
+      submitText.classList.remove("hidden");
+      submitSpinner.classList.add("hidden");
+      errorDiv.textContent = "Une erreur est survenue. Veuillez réessayer.";
+      errorDiv.classList.remove("hidden");
+      console.error("Login error:", error);
+    }
   });
 
   // Check if already logged in
-  if (localStorage.getItem("maison_manoe_auth")) {
+  if (localStorage.getItem("maison_manoe_token") || sessionStorage.getItem("maison_manoe_token")) {
     const returnUrl = new URLSearchParams(window.location.search).get("return") || "/profile";
     window.location.href = returnUrl;
   }
