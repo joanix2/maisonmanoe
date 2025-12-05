@@ -19,12 +19,12 @@ endblock %} {% block extra_head %}
       <div class="flex flex-col md:flex-row gap-6">
         <!-- Sidebar profil -->
         <aside class="w-full md:w-1/3 flex flex-col items-center text-center md:text-left">
-          <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-100">
-            <!-- avatar placeholder -->
-            <img src="https://picsum.photos/200" alt="Avatar" class="w-full h-full object-cover" />
+          <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+            <!-- avatar placeholder avec initiales -->
+            <span id="user-avatar" class="text-4xl font-semibold text-maison-beige">--</span>
           </div>
-          <h2 class="mt-4 text-xl font-semibold">Marie Dupont</h2>
-          <p class="text-sm text-gray-500">marie.dupont@example.com</p>
+          <h2 id="user-full-name" class="mt-4 text-xl font-semibold">Chargement...</h2>
+          <p id="user-email" class="text-sm text-gray-500">--</p>
 
           <nav class="mt-6 w-full" id="profile-nav">
             <ul class="space-y-2 text-left">
@@ -33,6 +33,7 @@ endblock %} {% block extra_head %}
               <li><button data-section="commandes" class="nav-item w-full text-left px-3 py-2 rounded hover:bg-gray-100 transition-colors">Commandes</button></li>
               <li><button data-section="favoris" class="nav-item w-full text-left px-3 py-2 rounded hover:bg-gray-100 transition-colors">Favoris</button></li>
               <li><button data-section="securite" class="nav-item w-full text-left px-3 py-2 rounded hover:bg-gray-100 transition-colors">Sécurité</button></li>
+              <li><button id="logout-btn" class="w-full text-left px-3 py-2 rounded text-red-600 hover:bg-red-50 transition-colors">Se déconnecter</button></li>
             </ul>
           </nav>
         </aside>
@@ -48,19 +49,26 @@ endblock %} {% block extra_head %}
             <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="text-sm text-gray-600">Prénom</label>
-                <p class="mt-1 font-medium">Marie</p>
+                <p id="info-first-name" class="mt-1 font-medium">--</p>
               </div>
               <div>
                 <label class="text-sm text-gray-600">Nom</label>
-                <p class="mt-1 font-medium">Dupont</p>
+                <p id="info-last-name" class="mt-1 font-medium">--</p>
               </div>
               <div>
                 <label class="text-sm text-gray-600">Email</label>
-                <p class="mt-1 font-medium">marie.dupont@example.com</p>
+                <p id="info-email" class="mt-1 font-medium">--</p>
               </div>
               <div>
                 <label class="text-sm text-gray-600">Téléphone</label>
-                <p class="mt-1 font-medium">+33 6 12 34 56 78</p>
+                <p id="info-phone" class="mt-1 font-medium">--</p>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="text-sm text-gray-600">Compte créé le</label>
+                <p id="info-created" class="mt-1 font-medium">--</p>
+              </div>
+              <div class="sm:col-span-2" id="admin-badge-container" style="display: none">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800"> 👑 Compte Administrateur </span>
               </div>
             </div>
           </section>
@@ -114,7 +122,16 @@ endblock %} {% block extra_head %}
               <h3 class="text-lg font-semibold">Sécurité</h3>
               <a href="#" class="text-sm text-maison-beige hover:underline">Changer le mot de passe</a>
             </div>
-            <p class="mt-3 text-sm text-gray-600">Dernière connexion : 02/12/2025</p>
+            <div class="mt-4 space-y-3">
+              <div>
+                <label class="text-sm text-gray-600">Statut du compte</label>
+                <p id="account-status" class="mt-1 font-medium text-green-600">Actif</p>
+              </div>
+              <div>
+                <label class="text-sm text-gray-600">Dernière modification</label>
+                <p id="last-updated" class="mt-1 font-medium">--</p>
+              </div>
+            </div>
           </section>
         </main>
       </div>
@@ -203,7 +220,10 @@ endblock %} {% block extra_head %}
   }
 
   // Initialiser la state machine au chargement de la page
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", async () => {
+    // Protéger la page (rediriger si non connecté)
+    MaisonManoeAuth.requireAuth("/connexion?return=/profile");
+
     const profileSM = new ProfileStateMachine();
 
     // Si un hash est présent dans l'URL, naviguer vers cette section
@@ -211,6 +231,84 @@ endblock %} {% block extra_head %}
     if (hash && profileSM.states.includes(hash)) {
       profileSM.transition(hash);
     }
+
+    // Charger les données utilisateur
+    await loadUserData();
+
+    // Gérer la déconnexion
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (confirm("Êtes-vous sûr de vouloir vous déconnecter ?")) {
+          MaisonManoeAuth.logout("/");
+        }
+      });
+    }
   });
+
+  /**
+   * Charge et affiche les données de l'utilisateur connecté
+   */
+  async function loadUserData() {
+    try {
+      // Récupérer l'utilisateur depuis le localStorage/sessionStorage
+      const user = MaisonManoeAuth.getCurrentUser();
+
+      if (!user) {
+        console.error("Aucun utilisateur trouvé");
+        window.location.href = "/connexion";
+        return;
+      }
+
+      // Sidebar
+      document.getElementById("user-full-name").textContent = `${user.first_name} ${user.last_name}`;
+      document.getElementById("user-email").textContent = user.email;
+
+      // Avatar avec initiales
+      const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`.toUpperCase();
+      document.getElementById("user-avatar").textContent = initials;
+
+      // Section Informations
+      document.getElementById("info-first-name").textContent = user.first_name;
+      document.getElementById("info-last-name").textContent = user.last_name;
+      document.getElementById("info-email").textContent = user.email;
+      document.getElementById("info-phone").textContent = user.phone || "Non renseigné";
+
+      // Formater la date de création
+      if (user.created_at) {
+        const createdDate = new Date(user.created_at);
+        document.getElementById("info-created").textContent = createdDate.toLocaleDateString("fr-FR", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+      }
+
+      // Badge admin si applicable
+      if (user.is_admin) {
+        document.getElementById("admin-badge-container").style.display = "block";
+      }
+
+      // Section Sécurité
+      document.getElementById("account-status").textContent = user.is_active ? "Actif" : "Inactif";
+      document.getElementById("account-status").className = user.is_active ? "mt-1 font-medium text-green-600" : "mt-1 font-medium text-red-600";
+
+      if (user.updated_at) {
+        const updatedDate = new Date(user.updated_at);
+        document.getElementById("last-updated").textContent = updatedDate.toLocaleDateString("fr-FR", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+    } catch (error) {
+      console.error("Erreur lors du chargement des données utilisateur:", error);
+      alert("Impossible de charger vos informations. Veuillez vous reconnecter.");
+      MaisonManoeAuth.logout("/connexion");
+    }
+  }
 </script>
 {% endblock %}

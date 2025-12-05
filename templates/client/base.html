@@ -63,11 +63,57 @@
                 </svg>
                 <span class="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
               </a>
-              <a href="/connexion" id="user-icon" aria-label="Compte utilisateur" class="hover:text-gray-700 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </a>
+              <!-- Menu utilisateur avec dropdown -->
+              <div class="relative" id="user-menu-container">
+                <button id="user-menu-button" aria-label="Menu utilisateur" class="hover:text-gray-700 transition-colors flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </button>
+
+                <!-- Dropdown menu -->
+                <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                  <!-- Si connecté -->
+                  <div data-auth-required>
+                    <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        Mon profil
+                      </span>
+                    </a>
+                    <a href="/favoris" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                          />
+                        </svg>
+                        Mes favoris
+                      </span>
+                    </a>
+                    <div class="border-t border-gray-200"></div>
+                    <button id="header-logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                      <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        Se déconnecter
+                      </span>
+                    </button>
+                  </div>
+
+                  <!-- Si non connecté -->
+                  <div data-auth-guest>
+                    <a href="/connexion" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Se connecter</a>
+                    <a href="/inscription" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">S'inscrire</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </nav>
         </div>
@@ -127,22 +173,47 @@
     <script>
       // Initialize auth UI on page load
       document.addEventListener("DOMContentLoaded", function () {
-        const userIcon = document.getElementById("user-icon");
-
         // Update auth UI
         if (window.MaisonManoeAuth) {
           window.MaisonManoeAuth.updateAuthUI();
+        }
 
-          // Update user icon link
-          if (window.MaisonManoeAuth.isAuthenticated() && userIcon) {
-            userIcon.href = "/profile";
+        // Gérer le dropdown utilisateur
+        const userMenuButton = document.getElementById("user-menu-button");
+        const userDropdown = document.getElementById("user-dropdown");
+        const userMenuContainer = document.getElementById("user-menu-container");
 
-            // Add user name tooltip
-            const user = window.MaisonManoeAuth.getCurrentUser();
-            if (user) {
-              userIcon.setAttribute("title", `${user.first_name} ${user.last_name}`);
+        if (userMenuButton && userDropdown) {
+          // Toggle dropdown on click
+          userMenuButton.addEventListener("click", function (e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle("hidden");
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener("click", function (e) {
+            if (!userMenuContainer.contains(e.target)) {
+              userDropdown.classList.add("hidden");
             }
-          }
+          });
+
+          // Close dropdown on escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+              userDropdown.classList.add("hidden");
+            }
+          });
+        }
+
+        // Gérer la déconnexion depuis le header
+        const headerLogoutBtn = document.getElementById("header-logout-btn");
+        if (headerLogoutBtn && window.MaisonManoeAuth) {
+          headerLogoutBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (confirm("Êtes-vous sûr de vouloir vous déconnecter ?")) {
+              window.MaisonManoeAuth.logout("/");
+            }
+          });
         }
       });
     </script>

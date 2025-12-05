@@ -13,6 +13,10 @@ async def lifespan(app: FastAPI):
     # Startup
     print("🚀 Démarrage de l'application...")
     print("✓ Connexion à Neo4j établie")
+    
+    # Créer les index utilisateurs
+    neo4j_db.create_user_indexes()
+    
     yield
     # Shutdown
     print("🛑 Arrêt de l'application...")

@@ -92,6 +92,31 @@ class Neo4jConnection:
             session.run(create_query)
             print(f"✓ Index vectoriel '{index_name}' créé pour {label}.{property_name}")
     
+    def create_user_indexes(self):
+        """
+        Crée les index pour optimiser les requêtes utilisateurs
+        """
+        with self.driver.session() as session:
+            try:
+                # Index sur l'ID personnalisé
+                session.run("""
+                    CREATE INDEX user_id_index IF NOT EXISTS
+                    FOR (u:User) ON (u.id)
+                """)
+                print("✓ Index utilisateur créé : user_id_index")
+            except Exception:
+                pass  # Index existe déjà
+            
+            try:
+                # Index sur l'email
+                session.run("""
+                    CREATE INDEX user_email_index IF NOT EXISTS
+                    FOR (u:User) ON (u.email)
+                """)
+                print("✓ Index utilisateur créé : user_email_index")
+            except Exception:
+                pass  # Index existe déjà
+    
     def generate_embedding(self, text: str) -> List[float]:
         """
         Génère un embedding vectoriel pour un texte
