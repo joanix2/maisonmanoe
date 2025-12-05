@@ -1,17 +1,17 @@
 {% extends "admin/base.html" %} {% block title %}Contenus texte{% endblock %} {% block page_title %}Gestion des contenus texte{% endblock %} {% block content %}
-<div class="mb-6">
-  <p class="text-gray-600">Modifiez les textes des pages informatives de votre site</p>
+<div class="mb-4 md:mb-6">
+  <p class="text-sm md:text-base text-gray-600">Modifiez les textes des pages informatives de votre site</p>
 </div>
 
 <!-- Liste des pages éditables -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
   <!-- CGV -->
   <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="cgv">
-    <div class="p-6">
-      <div class="flex items-start justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="p-4 md:p-6">
+      <div class="flex items-start justify-between mb-3 md:mb-4">
+        <div class="flex items-center gap-2 md:gap-3">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 md:w-6 md:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -21,80 +21,80 @@
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">Conditions Générales de Vente</h3>
-            <p class="text-sm text-gray-500">Dernière modification : 15/03/2024</p>
+            <h3 class="text-sm md:text-base font-semibold text-gray-900">Conditions Générales de Vente</h3>
+            <p class="text-xs md:text-sm text-gray-500">Dernière modification : 15/03/2024</p>
           </div>
         </div>
-        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </div>
-      <p class="text-sm text-gray-600">Page juridique définissant les conditions de vente et d'utilisation du site</p>
+      <p class="text-xs md:text-sm text-gray-600">Page juridique définissant les conditions de vente et d'utilisation du site</p>
     </div>
   </div>
 
   <!-- Politique de confidentialité -->
   <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="confidentialite">
-    <div class="p-6">
-      <div class="flex items-start justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="p-4 md:p-6">
+      <div class="flex items-start justify-between mb-3 md:mb-4">
+        <div class="flex items-center gap-2 md:gap-3">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 md:w-6 md:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">Politique de confidentialité</h3>
-            <p class="text-sm text-gray-500">Dernière modification : 15/03/2024</p>
+            <h3 class="text-sm md:text-base font-semibold text-gray-900">Politique de confidentialité</h3>
+            <p class="text-xs md:text-sm text-gray-500">Dernière modification : 15/03/2024</p>
           </div>
         </div>
-        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </div>
-      <p class="text-sm text-gray-600">Politique de protection des données personnelles (RGPD)</p>
+      <p class="text-xs md:text-sm text-gray-600">Politique de protection des données personnelles (RGPD)</p>
     </div>
   </div>
 
   <!-- À propos -->
   <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="a-propos">
-    <div class="p-6">
-      <div class="flex items-start justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="p-4 md:p-6">
+      <div class="flex items-start justify-between mb-3 md:mb-4">
+        <div class="flex items-center gap-2 md:gap-3">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 md:w-6 md:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">À propos</h3>
-            <p class="text-sm text-gray-500">Dernière modification : 12/03/2024</p>
+            <h3 class="text-sm md:text-base font-semibold text-gray-900">À propos</h3>
+            <p class="text-xs md:text-sm text-gray-500">Dernière modification : 12/03/2024</p>
           </div>
         </div>
-        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </div>
-      <p class="text-sm text-gray-600">Histoire de la marque, valeurs et présentation de l'équipe</p>
+      <p class="text-xs md:text-sm text-gray-600">Histoire de la marque, valeurs et présentation de l'équipe</p>
     </div>
   </div>
 
   <!-- Contact -->
   <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer page-card" data-page="contact">
-    <div class="p-6">
-      <div class="flex items-start justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="p-4 md:p-6">
+      <div class="flex items-start justify-between mb-3 md:mb-4">
+        <div class="flex items-center gap-2 md:gap-3">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 md:w-6 md:h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">Contact</h3>
-            <p class="text-sm text-gray-500">Dernière modification : 10/03/2024</p>
+            <h3 class="text-sm md:text-base font-semibold text-gray-900">Contact</h3>
+            <p class="text-xs md:text-sm text-gray-500">Dernière modification : 10/03/2024</p>
           </div>
         </div>
-        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </div>
@@ -274,11 +274,25 @@
       </form>
     </div>
 
-    <div class="p-6 border-t border-gray-200 bg-gray-50 flex gap-3">
-      <button type="button" id="cancel-btn" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-white transition-colors font-medium">Annuler</button>
+    <div class="p-4 md:p-6 border-t border-gray-200 bg-gray-50 flex flex-col md:flex-row gap-2 md:gap-3">
+      <button
+        type="button"
+        id="cancel-btn"
+        class="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-white transition-colors font-medium text-sm md:text-base"
+      >
+        Annuler
+      </button>
       <div class="flex-1"></div>
-      <button type="button" id="save-draft-btn" class="px-6 py-3 border border-blue-300 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium">Enregistrer brouillon</button>
-      <button type="button" id="publish-btn" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">Publier</button>
+      <button
+        type="button"
+        id="save-draft-btn"
+        class="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 border border-blue-300 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium text-sm md:text-base"
+      >
+        Enregistrer brouillon
+      </button>
+      <button type="button" id="publish-btn" class="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm md:text-base">
+        Publier
+      </button>
     </div>
   </div>
 </div>

@@ -31,3 +31,9 @@ async def admin_produits(request: Request):
 async def admin_texte(request: Request):
     """Gestion des contenus texte"""
     return templates.TemplateResponse("admin/texte.html", {"request": request})
+
+
+@router.get("/notifications", response_class=HTMLResponse)
+async def admin_notifications(request: Request):
+    """Page des notifications"""
+    return templates.TemplateResponse("admin/notifications.html", {"request": request})

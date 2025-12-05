@@ -1,21 +1,24 @@
 {% extends "admin/base.html" %} {% block title %}Produits{% endblock %} {% block page_title %}Gestion des produits{% endblock %} {% block content %}
 <!-- Header avec recherche et bouton -->
-<div class="flex items-center justify-between mb-6 gap-4">
-  <div class="flex-1 max-w-md">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6 gap-3 md:gap-4">
+  <div class="flex-1 sm:max-w-md">
     <div class="relative">
       <input
         type="text"
         id="search-products"
         placeholder="Rechercher un produit..."
-        class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+        class="w-full px-3 md:px-4 py-2 pl-9 md:pl-10 text-sm md:text-base border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
       />
-      <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-4 h-4 md:w-5 md:h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
     </div>
   </div>
-  <button id="create-product-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2 whitespace-nowrap">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <button
+    id="create-product-btn"
+    class="px-3 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center gap-2 whitespace-nowrap text-sm md:text-base"
+  >
+    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
     </svg>
     Nouveau produit
@@ -23,15 +26,15 @@
 </div>
 
 <!-- Filtres -->
-<div class="mb-6 flex gap-3">
-  <select class="px-4 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
+<div class="mb-4 md:mb-6 flex flex-col sm:flex-row gap-2 md:gap-3">
+  <select class="flex-1 sm:flex-none px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
     <option>Toutes les catégories</option>
     <option>Décoration</option>
     <option>Mobilier</option>
     <option>Luminaires</option>
     <option>Textile</option>
   </select>
-  <select class="px-4 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
+  <select class="flex-1 sm:flex-none px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none">
     <option>Tous les statuts</option>
     <option>En ligne</option>
     <option>Brouillon</option>
@@ -40,21 +43,21 @@
 </div>
 
 <!-- Liste des produits en grille -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="products-grid">
   <!-- Produit 1 -->
   <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer product-card" data-product-id="1">
     <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
       <img src="https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=400" alt="Vase céramique" class="w-full h-full object-cover" />
     </div>
-    <div class="p-4">
-      <div class="flex items-start justify-between mb-2">
-        <h3 class="font-semibold text-gray-900">Vase céramique artisanal</h3>
-        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">En ligne</span>
+    <div class="p-3 md:p-4">
+      <div class="flex items-start justify-between mb-2 gap-2">
+        <h3 class="text-sm md:text-base font-semibold text-gray-900">Vase céramique artisanal</h3>
+        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 flex-shrink-0">En ligne</span>
       </div>
-      <p class="text-sm text-gray-500 mb-3">Décoration</p>
+      <p class="text-xs md:text-sm text-gray-500 mb-2 md:mb-3">Décoration</p>
       <div class="flex items-center justify-between">
-        <span class="text-lg font-bold text-gray-900">45,00 €</span>
-        <span class="text-sm text-gray-600">Stock: 12</span>
+        <span class="text-base md:text-lg font-bold text-gray-900">45,00 €</span>
+        <span class="text-xs md:text-sm text-gray-600">Stock: 12</span>
       </div>
     </div>
   </div>
@@ -64,15 +67,15 @@
     <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
       <img src="https://images.unsplash.com/photo-1602874801006-c8f8f5f0e42f?w=400" alt="Bougie" class="w-full h-full object-cover" />
     </div>
-    <div class="p-4">
-      <div class="flex items-start justify-between mb-2">
-        <h3 class="font-semibold text-gray-900">Bougie parfumée artisanale</h3>
-        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">En ligne</span>
+    <div class="p-3 md:p-4">
+      <div class="flex items-start justify-between mb-2 gap-2">
+        <h3 class="text-sm md:text-base font-semibold text-gray-900">Bougie parfumée artisanale</h3>
+        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 flex-shrink-0">En ligne</span>
       </div>
-      <p class="text-sm text-gray-500 mb-3">Décoration</p>
+      <p class="text-xs md:text-sm text-gray-500 mb-2 md:mb-3">Décoration</p>
       <div class="flex items-center justify-between">
-        <span class="text-lg font-bold text-gray-900">28,00 €</span>
-        <span class="text-sm text-gray-600">Stock: 24</span>
+        <span class="text-base md:text-lg font-bold text-gray-900">28,00 €</span>
+        <span class="text-xs md:text-sm text-gray-600">Stock: 24</span>
       </div>
     </div>
   </div>

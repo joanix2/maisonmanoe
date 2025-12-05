@@ -59,7 +59,6 @@ INTEGRATION_*.md
 EXEMPLES_*.py
 test_*.py
 create_*.py
-init_db.py
 
 # Git
 .git/

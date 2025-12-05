@@ -24,8 +24,21 @@
   </head>
   <body class="font-sans antialiased bg-gray-100">
     <div class="flex h-screen overflow-hidden">
+      <!-- Mobile menu overlay -->
+      <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden hidden"></div>
+
       <!-- Sidebar -->
-      <aside class="w-64 bg-gray-900 text-white flex-shrink-0">
+      <aside
+        id="sidebar"
+        class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-gray-900 text-white flex-shrink-0 transition-transform duration-300 ease-in-out z-50"
+      >
+        <!-- Close button (mobile only) -->
+        <button id="close-sidebar-btn" class="lg:hidden absolute top-4 right-4 p-2 text-gray-400 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
         <!-- Header -->
         <div class="p-6 border-b border-gray-800">
           <h1 class="text-xl font-bold">Administration</h1>
@@ -81,6 +94,19 @@
             <span>Contenus texte</span>
           </a>
 
+          <!-- Notifications -->
+          <a href="/admin/notifications" class="flex items-center px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors {% if request.path == '/admin/notifications' %}bg-gray-800{% endif %}">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              />
+            </svg>
+            <span>Notifications</span>
+          </a>
+
           <!-- Divider -->
           <div class="border-t border-gray-800 my-4"></div>
 
@@ -106,13 +132,20 @@
       <div class="flex-1 flex flex-col overflow-hidden">
         <!-- Top bar -->
         <header class="bg-white shadow-sm border-b border-gray-200">
-          <div class="px-6 py-4 flex items-center justify-between">
-            <h2 class="text-2xl font-bold text-gray-800">{% block page_title %}Tableau de bord{% endblock %}</h2>
+          <div class="px-4 md:px-6 py-4 flex items-center justify-between">
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
 
-            <div class="flex items-center gap-4">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-800">{% block page_title %}Tableau de bord{% endblock %}</h2>
+
+            <div class="flex items-center gap-2 md:gap-4">
               <!-- Notifications -->
-              <button class="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <a href="/admin/notifications" class="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -121,26 +154,66 @@
                   />
                 </svg>
                 <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </button>
+              </a>
 
               <!-- User menu -->
-              <div class="flex items-center gap-3">
-                <div class="text-right">
+              <a href="/profile" class="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity">
+                <div class="text-right hidden md:block">
                   <p class="text-sm font-medium text-gray-900">Administrateur</p>
                   <p class="text-xs text-gray-500">admin@maisonmanoe.com</p>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-maison-beige flex items-center justify-center text-white font-semibold">A</div>
-              </div>
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-maison-beige flex items-center justify-center text-white font-semibold text-sm md:text-base">A</div>
+              </a>
             </div>
           </div>
         </header>
 
         <!-- Content area -->
-        <main class="flex-1 overflow-y-auto p-6">{% block content %}{% endblock %}</main>
+        <main class="flex-1 overflow-y-auto p-4 md:p-6">{% block content %}{% endblock %}</main>
       </div>
     </div>
 
     <script>
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const closeSidebarBtn = document.getElementById("close-sidebar-btn");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("mobile-menu-overlay");
+
+      function openSidebar() {
+        sidebar.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", openSidebar);
+      }
+
+      if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener("click", closeSidebar);
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", closeSidebar);
+      }
+
+      // Close sidebar when clicking a link (mobile)
+      const sidebarLinks = sidebar.querySelectorAll("a");
+      sidebarLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth < 1024) {
+            closeSidebar();
+          }
+        });
+      });
+
       // Logout handler
       document.getElementById("logout-btn").addEventListener("click", function () {
         if (confirm("Êtes-vous sûr de vouloir vous déconnecter ?")) {

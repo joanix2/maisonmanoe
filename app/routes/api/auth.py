@@ -9,7 +9,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from app.models.user import User, UserCreate, Token, LoginRequest
 from app.services.user import user_service
 from app.auth import create_access_token, get_current_user_email
-from config import settings
+from app.config import settings
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 

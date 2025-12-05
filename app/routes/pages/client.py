@@ -36,7 +36,14 @@ async def favoris(request: Request):
 @router.get("/profile", response_class=HTMLResponse)
 async def profile(request: Request):
     """Page de profil utilisateur"""
-    return templates.TemplateResponse("client/profile.html", {"request": request})
+    # Détecte si on vient de l'admin (via referer ou query param)
+    referer = request.headers.get("referer", "")
+    from_admin = "/admin" in referer or request.query_params.get("from") == "admin"
+    
+    return templates.TemplateResponse("client/profile.html", {
+        "request": request,
+        "from_admin": from_admin
+    })
 
 
 @router.get("/paiement", response_class=HTMLResponse)

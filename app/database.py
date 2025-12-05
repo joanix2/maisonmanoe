@@ -5,7 +5,7 @@ from typing import List, Optional, Dict, Any
 from neo4j import GraphDatabase, Driver
 from sentence_transformers import SentenceTransformer
 import numpy as np
-from config import settings
+from app.config import settings
 
 
 class Neo4jConnection:
