@@ -45,3 +45,6 @@ Thumbs.db
 docs/
 *.backup
 TODO.md
+
+# Volumes
+neo4j/

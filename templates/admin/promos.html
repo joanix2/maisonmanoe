@@ -1,17 +1,8 @@
-{% extends "admin/base.html" %}
-
-{% block title %}Promotions{% endblock %}
-
-{% block page_title %}Gestion des promotions{% endblock %}
-
-{% block content %}
+{% extends "admin/base.html" %} {% block title %}Promotions{% endblock %} {% block page_title %}Gestion des promotions{% endblock %} {% block content %}
 <!-- Header avec bouton -->
 <div class="flex items-center justify-between mb-6">
   <p class="text-gray-600">Créez et gérez les codes promotionnels pour vos clients</p>
-  <button 
-    id="create-promo-btn"
-    class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium flex items-center gap-2"
-  >
+  <button id="create-promo-btn" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium flex items-center gap-2">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
     </svg>
@@ -24,7 +15,7 @@
   <div class="p-6 border-b border-gray-200">
     <h3 class="text-lg font-semibold text-gray-900">Promotions actives et à venir</h3>
   </div>
-  
+
   <div class="overflow-x-auto">
     <table class="w-full">
       <thead class="bg-gray-50 border-b border-gray-200">
@@ -50,12 +41,8 @@
           <td class="px-6 py-4 whitespace-nowrap">
             <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Pourcentage</span>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-            47 / 100
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-            31/12/2025
-          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">47 / 100</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">31/12/2025</td>
           <td class="px-6 py-4 whitespace-nowrap">
             <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Active</span>
           </td>
@@ -75,12 +62,8 @@
           <td class="px-6 py-4 whitespace-nowrap">
             <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Montant fixe</span>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-            128 / ∞
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-            Illimitée
-          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">128 / ∞</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Illimitée</td>
           <td class="px-6 py-4 whitespace-nowrap">
             <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Active</span>
           </td>
@@ -100,12 +83,8 @@
           <td class="px-6 py-4 whitespace-nowrap">
             <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">Pourcentage</span>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-            12 / 50
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-            15/01/2026
-          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">12 / 50</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">15/01/2026</td>
           <td class="px-6 py-4 whitespace-nowrap">
             <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Programmée</span>
           </td>
@@ -139,9 +118,9 @@
       <!-- Code promo -->
       <div>
         <label for="promo-code" class="block text-sm font-medium text-gray-700 mb-2">Code promotionnel *</label>
-        <input 
-          type="text" 
-          id="promo-code" 
+        <input
+          type="text"
+          id="promo-code"
           required
           pattern="[A-Z0-9]{3,20}"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 uppercase font-mono"
@@ -175,9 +154,9 @@
       <div>
         <label for="promo-value" class="block text-sm font-medium text-gray-700 mb-2">Valeur de la réduction *</label>
         <div class="flex items-center gap-2">
-          <input 
-            type="number" 
-            id="promo-value" 
+          <input
+            type="number"
+            id="promo-value"
             required
             min="1"
             max="100"
@@ -191,8 +170,8 @@
       <!-- Limite utilisation -->
       <div>
         <label for="promo-limit" class="block text-sm font-medium text-gray-700 mb-2">Nombre d'utilisations max</label>
-        <input 
-          type="number" 
+        <input
+          type="number"
           id="promo-limit"
           min="1"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
@@ -203,114 +182,97 @@
       <!-- Date de fin -->
       <div>
         <label for="promo-end-date" class="block text-sm font-medium text-gray-700 mb-2">Date de fin</label>
-        <input 
-          type="date" 
-          id="promo-end-date"
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
-        />
+        <input type="date" id="promo-end-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20" />
         <p class="mt-1 text-xs text-gray-500">Optionnel - La promotion expirera à cette date</p>
       </div>
 
       <!-- Boutons -->
       <div class="flex gap-3 pt-4">
-        <button 
-          type="button"
-          id="cancel-btn"
-          class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-        >
-          Annuler
-        </button>
-        <button 
-          type="submit"
-          class="flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
-        >
-          Créer la promotion
-        </button>
+        <button type="button" id="cancel-btn" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">Annuler</button>
+        <button type="submit" class="flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium">Créer la promotion</button>
       </div>
     </form>
   </div>
 </div>
-{% endblock %}
-
-{% block extra_scripts %}
+{% endblock %} {% block extra_scripts %}
 <script>
-// Modal management
-const modal = document.getElementById('promo-modal');
-const createBtn = document.getElementById('create-promo-btn');
-const closeModalBtn = document.getElementById('close-modal');
-const cancelBtn = document.getElementById('cancel-btn');
+  // Modal management
+  const modal = document.getElementById("promo-modal");
+  const createBtn = document.getElementById("create-promo-btn");
+  const closeModalBtn = document.getElementById("close-modal");
+  const cancelBtn = document.getElementById("cancel-btn");
 
-createBtn.addEventListener('click', () => {
-  modal.classList.remove('hidden');
-});
-
-function closeModal() {
-  modal.classList.add('hidden');
-  document.getElementById('promo-form').reset();
-}
-
-closeModalBtn.addEventListener('click', closeModal);
-cancelBtn.addEventListener('click', closeModal);
-
-// Close modal on outside click
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) closeModal();
-});
-
-// Update unit based on type
-document.querySelectorAll('input[name="promo-type"]').forEach(radio => {
-  radio.addEventListener('change', function() {
-    const unit = document.getElementById('promo-unit');
-    const valueInput = document.getElementById('promo-value');
-    
-    if (this.value === 'percentage') {
-      unit.textContent = '%';
-      valueInput.max = 100;
-      valueInput.placeholder = '20';
-    } else {
-      unit.textContent = '€';
-      valueInput.max = 1000;
-      valueInput.placeholder = '10';
-    }
+  createBtn.addEventListener("click", () => {
+    modal.classList.remove("hidden");
   });
-});
 
-// Form submission
-document.getElementById('promo-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const code = document.getElementById('promo-code').value;
-  const type = document.querySelector('input[name="promo-type"]:checked').value;
-  const value = document.getElementById('promo-value').value;
-  const limit = document.getElementById('promo-limit').value;
-  const endDate = document.getElementById('promo-end-date').value;
-  
-  // Simulate API call
-  console.log('Creating promo:', { code, type, value, limit, endDate });
-  
-  // Show success message
-  alert(`Promotion ${code} créée avec succès !`);
-  
-  closeModal();
-  
-  // TODO: Add row to table with new promo
-});
+  function closeModal() {
+    modal.classList.add("hidden");
+    document.getElementById("promo-form").reset();
+  }
 
-// Delete promo
-document.querySelectorAll('.delete-promo').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const code = this.dataset.code;
-    
-    if (confirm(`Êtes-vous sûr de vouloir supprimer la promotion ${code} ?`)) {
-      // Simulate API call
-      console.log('Deleting promo:', code);
-      
-      // Remove row
-      this.closest('tr').remove();
-      
-      alert(`Promotion ${code} supprimée !`);
-    }
+  closeModalBtn.addEventListener("click", closeModal);
+  cancelBtn.addEventListener("click", closeModal);
+
+  // Close modal on outside click
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
   });
-});
+
+  // Update unit based on type
+  document.querySelectorAll('input[name="promo-type"]').forEach((radio) => {
+    radio.addEventListener("change", function () {
+      const unit = document.getElementById("promo-unit");
+      const valueInput = document.getElementById("promo-value");
+
+      if (this.value === "percentage") {
+        unit.textContent = "%";
+        valueInput.max = 100;
+        valueInput.placeholder = "20";
+      } else {
+        unit.textContent = "€";
+        valueInput.max = 1000;
+        valueInput.placeholder = "10";
+      }
+    });
+  });
+
+  // Form submission
+  document.getElementById("promo-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const code = document.getElementById("promo-code").value;
+    const type = document.querySelector('input[name="promo-type"]:checked').value;
+    const value = document.getElementById("promo-value").value;
+    const limit = document.getElementById("promo-limit").value;
+    const endDate = document.getElementById("promo-end-date").value;
+
+    // Simulate API call
+    console.log("Creating promo:", { code, type, value, limit, endDate });
+
+    // Show success message
+    alert(`Promotion ${code} créée avec succès !`);
+
+    closeModal();
+
+    // TODO: Add row to table with new promo
+  });
+
+  // Delete promo
+  document.querySelectorAll(".delete-promo").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const code = this.dataset.code;
+
+      if (confirm(`Êtes-vous sûr de vouloir supprimer la promotion ${code} ?`)) {
+        // Simulate API call
+        console.log("Deleting promo:", code);
+
+        // Remove row
+        this.closest("tr").remove();
+
+        alert(`Promotion ${code} supprimée !`);
+      }
+    });
+  });
 </script>
 {% endblock %}

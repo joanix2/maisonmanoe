@@ -1,16 +1,10 @@
-{% extends "admin/base.html" %}
-
-{% block title %}Produits{% endblock %}
-
-{% block page_title %}Gestion des produits{% endblock %}
-
-{% block content %}
+{% extends "admin/base.html" %} {% block title %}Produits{% endblock %} {% block page_title %}Gestion des produits{% endblock %} {% block content %}
 <!-- Header avec recherche et bouton -->
 <div class="flex items-center justify-between mb-6 gap-4">
   <div class="flex-1 max-w-md">
     <div class="relative">
-      <input 
-        type="text" 
+      <input
+        type="text"
         id="search-products"
         placeholder="Rechercher un produit..."
         class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
@@ -20,10 +14,7 @@
       </svg>
     </div>
   </div>
-  <button 
-    id="create-product-btn"
-    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2 whitespace-nowrap"
-  >
+  <button id="create-product-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2 whitespace-nowrap">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
     </svg>
@@ -108,7 +99,12 @@
   <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer product-card" data-product-id="4">
     <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden flex items-center justify-center">
       <svg class="w-20 h-20 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+        />
       </svg>
     </div>
     <div class="p-4">
@@ -142,7 +138,7 @@
         <!-- Colonne gauche : Images -->
         <div class="space-y-4">
           <h4 class="font-semibold text-gray-900 mb-4">Photos du produit</h4>
-          
+
           <!-- Image principale -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Image principale *</label>
@@ -153,7 +149,12 @@
               </div>
               <div id="main-image-placeholder">
                 <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
                 <p class="text-sm text-gray-600">Cliquez ou glissez une image</p>
                 <p class="text-xs text-gray-500 mt-1">JPG, PNG jusqu'à 5MB</p>
@@ -183,9 +184,9 @@
           <!-- Nom -->
           <div>
             <label for="product-name" class="block text-sm font-medium text-gray-700 mb-2">Nom du produit *</label>
-            <input 
-              type="text" 
-              id="product-name" 
+            <input
+              type="text"
+              id="product-name"
               required
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               placeholder="Vase céramique artisanal"
@@ -195,11 +196,7 @@
           <!-- Catégorie -->
           <div>
             <label for="product-category" class="block text-sm font-medium text-gray-700 mb-2">Catégorie *</label>
-            <select 
-              id="product-category" 
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-            >
+            <select id="product-category" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
               <option value="">Sélectionner une catégorie</option>
               <option value="decoration">Décoration</option>
               <option value="mobilier">Mobilier</option>
@@ -213,9 +210,9 @@
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label for="product-price" class="block text-sm font-medium text-gray-700 mb-2">Prix (€) *</label>
-              <input 
-                type="number" 
-                id="product-price" 
+              <input
+                type="number"
+                id="product-price"
                 required
                 min="0"
                 step="0.01"
@@ -225,9 +222,9 @@
             </div>
             <div>
               <label for="product-stock" class="block text-sm font-medium text-gray-700 mb-2">Stock *</label>
-              <input 
-                type="number" 
-                id="product-stock" 
+              <input
+                type="number"
+                id="product-stock"
                 required
                 min="0"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
@@ -239,7 +236,7 @@
           <!-- Description courte -->
           <div>
             <label for="product-short-desc" class="block text-sm font-medium text-gray-700 mb-2">Description courte</label>
-            <textarea 
+            <textarea
               id="product-short-desc"
               rows="2"
               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 resize-none"
@@ -250,7 +247,7 @@
           <!-- Description complète -->
           <div>
             <label for="product-description" class="block text-sm font-medium text-gray-700 mb-2">Description complète *</label>
-            <textarea 
+            <textarea
               id="product-description"
               required
               rows="6"
@@ -263,35 +260,16 @@
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Dimensions</label>
             <div class="grid grid-cols-3 gap-2">
-              <input 
-                type="text" 
-                id="product-width"
-                class="px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-sm"
-                placeholder="L (cm)"
-              />
-              <input 
-                type="text" 
-                id="product-height"
-                class="px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-sm"
-                placeholder="H (cm)"
-              />
-              <input 
-                type="text" 
-                id="product-depth"
-                class="px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-sm"
-                placeholder="P (cm)"
-              />
+              <input type="text" id="product-width" class="px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-sm" placeholder="L (cm)" />
+              <input type="text" id="product-height" class="px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-sm" placeholder="H (cm)" />
+              <input type="text" id="product-depth" class="px-3 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-sm" placeholder="P (cm)" />
             </div>
           </div>
 
           <!-- Statut -->
           <div>
             <label for="product-status" class="block text-sm font-medium text-gray-700 mb-2">Statut *</label>
-            <select 
-              id="product-status" 
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-            >
+            <select id="product-status" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
               <option value="online">En ligne</option>
               <option value="draft">Brouillon</option>
               <option value="out-of-stock">Rupture de stock</option>
@@ -302,115 +280,96 @@
 
       <!-- Boutons -->
       <div class="flex gap-3 pt-6 mt-6 border-t border-gray-200">
-        <button 
-          type="button"
-          id="delete-product-btn"
-          class="px-6 py-3 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 transition-colors font-medium"
-        >
-          Supprimer
-        </button>
+        <button type="button" id="delete-product-btn" class="px-6 py-3 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 transition-colors font-medium">Supprimer</button>
         <div class="flex-1"></div>
-        <button 
-          type="button"
-          id="cancel-btn"
-          class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-        >
-          Annuler
-        </button>
-        <button 
-          type="submit"
-          class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-        >
-          Enregistrer
-        </button>
+        <button type="button" id="cancel-btn" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">Annuler</button>
+        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">Enregistrer</button>
       </div>
     </form>
   </div>
 </div>
-{% endblock %}
-
-{% block extra_scripts %}
+{% endblock %} {% block extra_scripts %}
 <script>
-// Modal management
-const modal = document.getElementById('product-modal');
-const modalTitle = document.getElementById('modal-title');
-const createBtn = document.getElementById('create-product-btn');
-const closeModalBtn = document.getElementById('close-modal');
-const cancelBtn = document.getElementById('cancel-btn');
+  // Modal management
+  const modal = document.getElementById("product-modal");
+  const modalTitle = document.getElementById("modal-title");
+  const createBtn = document.getElementById("create-product-btn");
+  const closeModalBtn = document.getElementById("close-modal");
+  const cancelBtn = document.getElementById("cancel-btn");
 
-// Open modal for new product
-createBtn.addEventListener('click', () => {
-  modalTitle.textContent = 'Nouveau produit';
-  document.getElementById('product-form').reset();
-  document.getElementById('delete-product-btn').classList.add('hidden');
-  modal.classList.remove('hidden');
-});
-
-// Open modal for existing product
-document.querySelectorAll('.product-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const productId = card.dataset.productId;
-    modalTitle.textContent = 'Modifier le produit';
-    document.getElementById('delete-product-btn').classList.remove('hidden');
-    
-    // TODO: Load product data
-    // For now, just open modal
-    modal.classList.remove('hidden');
+  // Open modal for new product
+  createBtn.addEventListener("click", () => {
+    modalTitle.textContent = "Nouveau produit";
+    document.getElementById("product-form").reset();
+    document.getElementById("delete-product-btn").classList.add("hidden");
+    modal.classList.remove("hidden");
   });
-});
 
-function closeModal() {
-  modal.classList.add('hidden');
-  document.getElementById('product-form').reset();
-}
+  // Open modal for existing product
+  document.querySelectorAll(".product-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const productId = card.dataset.productId;
+      modalTitle.textContent = "Modifier le produit";
+      document.getElementById("delete-product-btn").classList.remove("hidden");
 
-closeModalBtn.addEventListener('click', closeModal);
-cancelBtn.addEventListener('click', closeModal);
+      // TODO: Load product data
+      // For now, just open modal
+      modal.classList.remove("hidden");
+    });
+  });
 
-// Close modal on outside click
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) closeModal();
-});
-
-// Image uploads
-const mainImageUpload = document.getElementById('main-image-upload');
-const mainImageInput = document.getElementById('main-image-input');
-const mainImagePreview = document.getElementById('main-image-preview');
-const mainImagePlaceholder = document.getElementById('main-image-placeholder');
-
-mainImageUpload.addEventListener('click', () => {
-  mainImageInput.click();
-});
-
-mainImageInput.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      mainImagePreview.querySelector('img').src = e.target.result;
-      mainImagePreview.classList.remove('hidden');
-      mainImagePlaceholder.classList.add('hidden');
-    };
-    reader.readAsDataURL(file);
+  function closeModal() {
+    modal.classList.add("hidden");
+    document.getElementById("product-form").reset();
   }
-});
 
-// Additional images
-const addImageBtn = document.getElementById('add-image-btn');
-const additionalImagesInput = document.getElementById('additional-images-input');
-const additionalImagesContainer = document.getElementById('additional-images');
+  closeModalBtn.addEventListener("click", closeModal);
+  cancelBtn.addEventListener("click", closeModal);
 
-addImageBtn.addEventListener('click', () => {
-  additionalImagesInput.click();
-});
+  // Close modal on outside click
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
 
-additionalImagesInput.addEventListener('change', (e) => {
-  Array.from(e.target.files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const div = document.createElement('div');
-      div.className = 'border rounded aspect-square overflow-hidden relative group';
-      div.innerHTML = `
+  // Image uploads
+  const mainImageUpload = document.getElementById("main-image-upload");
+  const mainImageInput = document.getElementById("main-image-input");
+  const mainImagePreview = document.getElementById("main-image-preview");
+  const mainImagePlaceholder = document.getElementById("main-image-placeholder");
+
+  mainImageUpload.addEventListener("click", () => {
+    mainImageInput.click();
+  });
+
+  mainImageInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        mainImagePreview.querySelector("img").src = e.target.result;
+        mainImagePreview.classList.remove("hidden");
+        mainImagePlaceholder.classList.add("hidden");
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Additional images
+  const addImageBtn = document.getElementById("add-image-btn");
+  const additionalImagesInput = document.getElementById("additional-images-input");
+  const additionalImagesContainer = document.getElementById("additional-images");
+
+  addImageBtn.addEventListener("click", () => {
+    additionalImagesInput.click();
+  });
+
+  additionalImagesInput.addEventListener("change", (e) => {
+    Array.from(e.target.files).forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const div = document.createElement("div");
+        div.className = "border rounded aspect-square overflow-hidden relative group";
+        div.innerHTML = `
         <img src="${e.target.result}" class="w-full h-full object-cover" />
         <button type="button" class="absolute top-1 right-1 bg-red-600 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity remove-image">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -418,61 +377,61 @@ additionalImagesInput.addEventListener('change', (e) => {
           </svg>
         </button>
       `;
-      
-      // Insert before add button
-      additionalImagesContainer.insertBefore(div, addImageBtn);
-      
-      // Remove image
-      div.querySelector('.remove-image').addEventListener('click', (e) => {
-        e.stopPropagation();
-        div.remove();
-      });
+
+        // Insert before add button
+        additionalImagesContainer.insertBefore(div, addImageBtn);
+
+        // Remove image
+        div.querySelector(".remove-image").addEventListener("click", (e) => {
+          e.stopPropagation();
+          div.remove();
+        });
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  // Form submission
+  document.getElementById("product-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById("product-name").value,
+      category: document.getElementById("product-category").value,
+      price: document.getElementById("product-price").value,
+      stock: document.getElementById("product-stock").value,
+      shortDesc: document.getElementById("product-short-desc").value,
+      description: document.getElementById("product-description").value,
+      width: document.getElementById("product-width").value,
+      height: document.getElementById("product-height").value,
+      depth: document.getElementById("product-depth").value,
+      status: document.getElementById("product-status").value,
     };
-    reader.readAsDataURL(file);
-  });
-});
 
-// Form submission
-document.getElementById('product-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const formData = {
-    name: document.getElementById('product-name').value,
-    category: document.getElementById('product-category').value,
-    price: document.getElementById('product-price').value,
-    stock: document.getElementById('product-stock').value,
-    shortDesc: document.getElementById('product-short-desc').value,
-    description: document.getElementById('product-description').value,
-    width: document.getElementById('product-width').value,
-    height: document.getElementById('product-height').value,
-    depth: document.getElementById('product-depth').value,
-    status: document.getElementById('product-status').value
-  };
-  
-  // Simulate API call
-  console.log('Saving product:', formData);
-  
-  alert('Produit enregistré avec succès !');
-  closeModal();
-});
-
-// Delete product
-document.getElementById('delete-product-btn').addEventListener('click', function() {
-  if (confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
     // Simulate API call
-    console.log('Deleting product');
-    alert('Produit supprimé !');
-    closeModal();
-  }
-});
+    console.log("Saving product:", formData);
 
-// Search
-document.getElementById('search-products').addEventListener('input', function(e) {
-  const search = e.target.value.toLowerCase();
-  document.querySelectorAll('.product-card').forEach(card => {
-    const text = card.textContent.toLowerCase();
-    card.style.display = text.includes(search) ? '' : 'none';
+    alert("Produit enregistré avec succès !");
+    closeModal();
   });
-});
+
+  // Delete product
+  document.getElementById("delete-product-btn").addEventListener("click", function () {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")) {
+      // Simulate API call
+      console.log("Deleting product");
+      alert("Produit supprimé !");
+      closeModal();
+    }
+  });
+
+  // Search
+  document.getElementById("search-products").addEventListener("input", function (e) {
+    const search = e.target.value.toLowerCase();
+    document.querySelectorAll(".product-card").forEach((card) => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(search) ? "" : "none";
+    });
+  });
 </script>
 {% endblock %}
