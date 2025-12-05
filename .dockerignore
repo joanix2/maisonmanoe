@@ -41,3 +41,26 @@ tmp/
 
 # Node modules (si jamais utilisé)
 node_modules/
+
+# Docker
+docker-compose*.yml
+Dockerfile
+.dockerignore
+
+# Neo4j data
+neo4j/
+
+# Documentation et tests
+*.md
+GUIDE_*.md
+AUTH.md
+DOCKER.md
+INTEGRATION_*.md
+EXEMPLES_*.py
+test_*.py
+create_*.py
+init_db.py
+
+# Git
+.git/
+.gitignore
