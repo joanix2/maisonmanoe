@@ -21,6 +21,15 @@ async def recherche(request: Request, q: str = ""):
     return templates.TemplateResponse("client/recherche.html", {"request": request, "query": q})
 
 
+@router.get("/produit/{product_id}", response_class=HTMLResponse)
+async def product_detail(request: Request, product_id: str):
+    """Page de détail d'un produit"""
+    return templates.TemplateResponse("client/produit.html", {
+        "request": request,
+        "product_id": product_id
+    })
+
+
 @router.get("/panier", response_class=HTMLResponse)
 async def panier(request: Request):
     """Page du panier"""

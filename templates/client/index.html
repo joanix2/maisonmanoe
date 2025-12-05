@@ -24,10 +24,10 @@ Pièces authentiques fabriquées à la main par des artisans passionnés.{% endb
   <h2 id="nouveautes" class="text-3xl md:text-4xl font-bold text-center mb-12 lowercase text-gray-900">Découvrir les nouveautés</h2>
   <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl">
     <!-- Produit principal mis en avant - GAUCHE -->
-    <div class="relative group bg-white">
+    <a href="#" id="featured-product" class="relative group bg-white block">
       <div class="relative overflow-hidden rounded-sm">
         <img src="https://picsum.photos/600/700" alt="Produit vedette" class="w-full h-[300px] lg:h-[728px] object-cover" />
-        <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
+        <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors z-10" aria-label="Ajouter aux favoris" onclick="event.preventDefault();">
           <svg class="w-6 h-6 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
@@ -43,15 +43,15 @@ Pièces authentiques fabriquées à la main par des artisans passionnés.{% endb
         <p class="text-sm text-gray-500 mb-2">Description of featured product</p>
         <p class="text-lg font-bold text-gray-900">€10.99</p>
       </div>
-    </div>
+    </a>
 
     <!-- Produits en sidebar - DROITE -->
     <div class="flex flex-col gap-6">
       <!-- Produit sidebar 1 - HAUT -->
-      <article class="bg-white">
+      <a href="#" id="sidebar-product-1" class="bg-white block">
         <div class="relative overflow-hidden rounded-sm">
           <img src="https://picsum.photos/600/240" alt="Produit 1" class="w-full h-[300px] object-cover mb-4" />
-          <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
+          <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors z-10" aria-label="Ajouter aux favoris" onclick="event.preventDefault();">
             <svg class="w-5 h-5 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
@@ -67,13 +67,13 @@ Pièces authentiques fabriquées à la main par des artisans passionnés.{% endb
           <p class="text-sm text-gray-500 mb-2">Description of top product</p>
           <p class="text-lg font-bold text-gray-900">€10.99</p>
         </div>
-      </article>
+      </a>
 
       <!-- Produit sidebar 2 - BAS -->
-      <article class="bg-white">
+      <a href="#" id="sidebar-product-2" class="bg-white block">
         <div class="relative overflow-hidden rounded-sm">
           <img src="https://picsum.photos/600/241" alt="Produit 2" class="w-full h-[300px] object-cover mb-4" />
-          <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
+          <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors z-10" aria-label="Ajouter aux favoris" onclick="event.preventDefault();">
             <svg class="w-5 h-5 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
@@ -89,7 +89,7 @@ Pièces authentiques fabriquées à la main par des artisans passionnés.{% endb
           <p class="text-sm text-gray-500 mb-2">Description of lower product</p>
           <p class="text-lg font-bold text-gray-900">€10.99</p>
         </div>
-      </article>
+      </a>
     </div>
   </div>
 </section>
@@ -110,4 +110,64 @@ Pièces authentiques fabriquées à la main par des artisans passionnés.{% endb
     </div>
   </div>
 </section>
+
+<!-- Script pour charger les produits dynamiquement -->
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    try {
+      // Charger les 3 premiers produits en ligne
+      const response = await fetch("/api/products?status=online&limit=3");
+      if (response.ok) {
+        const products = await response.json();
+
+        // Mettre à jour le produit principal
+        if (products.length > 0) {
+          updateFeaturedProduct(products[0]);
+        }
+
+        // Mettre à jour les produits de la sidebar
+        if (products.length > 1) {
+          updateSidebarProduct(1, products[1]);
+        }
+        if (products.length > 2) {
+          updateSidebarProduct(2, products[2]);
+        }
+      }
+    } catch (error) {
+      console.error("Erreur lors du chargement des produits:", error);
+    }
+  });
+
+  function updateFeaturedProduct(product) {
+    const element = document.getElementById("featured-product");
+    if (!element) return;
+
+    element.href = `/produit/${product.id}`;
+    const img = element.querySelector("img");
+    const title = element.querySelector("h3");
+    const description = element.querySelector("p.text-sm");
+    const price = element.querySelector("p.text-lg.font-bold");
+
+    if (img && product.main_image) img.src = product.main_image;
+    if (title) title.textContent = product.name;
+    if (description) description.textContent = product.short_description || product.description.substring(0, 80) + "...";
+    if (price) price.textContent = `${parseFloat(product.price).toFixed(2)} €`;
+  }
+
+  function updateSidebarProduct(index, product) {
+    const element = document.getElementById(`sidebar-product-${index}`);
+    if (!element) return;
+
+    element.href = `/produit/${product.id}`;
+    const img = element.querySelector("img");
+    const title = element.querySelector("h4");
+    const description = element.querySelector("p.text-sm");
+    const price = element.querySelector("p.text-lg.font-bold");
+
+    if (img && product.main_image) img.src = product.main_image;
+    if (title) title.textContent = product.name;
+    if (description) description.textContent = product.short_description || product.description.substring(0, 60) + "...";
+    if (price) price.textContent = `${parseFloat(product.price).toFixed(2)} €`;
+  }
+</script>
 {% endblock %}

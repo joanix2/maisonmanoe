@@ -44,32 +44,12 @@ endblock %} {% block content %}
     </div>
 
     <!-- Grille de produits -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {% for i in range(1, 9) %}
-      <!-- Produit {{ i }} -->
-      <article class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
-        <a href="#" class="block">
-          <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/400/500?random={{ i }}" alt="Produit {{ i }}" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300" />
-            <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="p-4">
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">Produit {{ i }}</h3>
-            <p class="text-sm text-gray-500 mb-3">Description du produit</p>
-            <p class="text-lg font-bold text-gray-900">€{{ 20 + i * 5 }}.99</p>
-          </div>
-        </a>
-      </article>
-      {% endfor %}
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Les produits seront chargés dynamiquement via JavaScript -->
+      <div class="col-span-full text-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+        <p class="mt-4 text-gray-600">Chargement des produits...</p>
+      </div>
     </div>
 
     <!-- Pagination -->
@@ -82,4 +62,139 @@ endblock %} {% block content %}
     </div>
   </div>
 </section>
+
+<!-- Script pour charger et afficher les produits -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const productsGrid = document.getElementById("products-grid");
+    const searchQuery = "{{ query }}";
+
+    // Charger les produits
+    loadProducts(searchQuery);
+
+    async function loadProducts(query) {
+      try {
+        // Appel à l'API pour récupérer les produits
+        const response = await fetch("/api/products?status=online&limit=20");
+
+        if (!response.ok) {
+          throw new Error("Erreur lors du chargement des produits");
+        }
+
+        const products = await response.json();
+
+        // Filtrer les produits si une recherche est en cours
+        let filteredProducts = products;
+        if (query) {
+          const queryLower = query.toLowerCase();
+          filteredProducts = products.filter(
+            (product) => product.name.toLowerCase().includes(queryLower) || product.description.toLowerCase().includes(queryLower) || product.category.toLowerCase().includes(queryLower)
+          );
+        }
+
+        // Mettre à jour le compteur de résultats
+        const resultsCount = document.querySelector(".text-gray-600 .font-semibold");
+        if (resultsCount) {
+          resultsCount.textContent = filteredProducts.length;
+        }
+
+        // Afficher les produits
+        displayProducts(filteredProducts);
+      } catch (error) {
+        console.error("Erreur:", error);
+        productsGrid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <p class="text-red-600">Erreur lors du chargement des produits.</p>
+          <p class="text-gray-600 mt-2">Veuillez réessayer plus tard.</p>
+        </div>
+      `;
+      }
+    }
+
+    function displayProducts(products) {
+      if (products.length === 0) {
+        productsGrid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p class="text-gray-600 text-lg">Aucun produit trouvé</p>
+          <p class="text-gray-500 mt-2">Essayez avec d'autres mots-clés</p>
+        </div>
+      `;
+        return;
+      }
+
+      productsGrid.innerHTML = products.map((product) => createProductCard(product)).join("");
+
+      // Ajouter les événements pour les boutons favoris
+      document.querySelectorAll(".favorite-btn").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleFavorite(this);
+        });
+      });
+    }
+
+    function createProductCard(product) {
+      const imageUrl = product.main_image || `https://picsum.photos/400/500?random=${product.id}`;
+      const price = parseFloat(product.price).toFixed(2);
+      const shortDesc = product.short_description || product.description.substring(0, 80) + "...";
+
+      return `
+      <article class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow group">
+        <a href="/produit/${product.id}" class="block">
+          <div class="relative overflow-hidden">
+            <img 
+              src="${imageUrl}" 
+              alt="${product.name}" 
+              class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
+              onerror="this.src='https://picsum.photos/400/500'"
+            />
+            ${product.stock === 0 ? '<div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center"><span class="text-white font-bold text-lg">Épuisé</span></div>' : ""}
+            <button 
+              class="favorite-btn absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors z-10" 
+              aria-label="Ajouter aux favoris"
+              data-product-id="${product.id}"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-gray-500 mb-1 uppercase tracking-wide">${product.category}</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-1 line-clamp-1">${product.name}</h3>
+            <p class="text-sm text-gray-500 mb-3 line-clamp-2">${shortDesc}</p>
+            <p class="text-lg font-bold text-gray-900">${price} €</p>
+          </div>
+        </a>
+      </article>
+    `;
+    }
+
+    function toggleFavorite(btn) {
+      const svg = btn.querySelector("svg");
+      const isFavorite = svg.getAttribute("fill") !== "none";
+
+      if (isFavorite) {
+        svg.setAttribute("fill", "none");
+        svg.classList.remove("text-red-500");
+      } else {
+        svg.setAttribute("fill", "currentColor");
+        svg.classList.add("text-red-500");
+      }
+
+      // TODO: Appeler l'API pour sauvegarder dans les favoris
+      const productId = btn.dataset.productId;
+      console.log(`Favoris ${isFavorite ? "retiré" : "ajouté"}: ${productId}`);
+    }
+  });
+</script>
 {% endblock %}

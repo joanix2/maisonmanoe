@@ -1,0 +1,420 @@
+{% extends "client/base.html" %} {% block title %}Détail du produit - Maison Manoé{% endblock %} {% block description %}Découvrez nos produits artisanaux de décoration d'intérieur{% endblock %} {%
+block content %}
+<div class="bg-white">
+  <!-- Breadcrumb -->
+  <nav class="container mx-auto px-4 md:px-8 lg:px-16 py-4" aria-label="Fil d'Ariane">
+    <ol class="flex items-center space-x-2 text-sm text-gray-600">
+      <li><a href="/" class="hover:text-gray-900 transition-colors">Accueil</a></li>
+      <li><span class="mx-2">/</span></li>
+      <li><a href="/recherche" class="hover:text-gray-900 transition-colors">Produits</a></li>
+      <li><span class="mx-2">/</span></li>
+      <li class="text-gray-900 font-medium" id="breadcrumb-product">Produit</li>
+    </ol>
+  </nav>
+
+  <!-- Section principale du produit -->
+  <section class="container mx-auto px-4 md:px-8 lg:px-16 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <!-- Galerie d'images - GAUCHE -->
+      <div class="space-y-4">
+        <!-- Image principale -->
+        <div class="relative bg-gray-100 rounded-sm overflow-hidden aspect-square">
+          <img id="main-image" src="https://picsum.photos/800/800" alt="Image principale du produit" class="w-full h-full object-cover" />
+          <!-- Badge promo -->
+          <div id="promo-badge" class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-sm text-sm font-semibold hidden">-15%</div>
+          <!-- Bouton favoris -->
+          <button id="favorite-btn" class="absolute top-4 right-4 p-3 bg-white rounded-full shadow-md hover:bg-gray-50 transition-all" aria-label="Ajouter aux favoris">
+            <svg class="w-6 h-6 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Miniatures -->
+        <div class="grid grid-cols-4 gap-3">
+          <button class="thumbnail-btn bg-gray-100 rounded-sm overflow-hidden aspect-square border-2 border-gray-300 hover:border-gray-500 transition-colors">
+            <img src="https://picsum.photos/200/200?random=1" alt="Miniature 1" class="w-full h-full object-cover" />
+          </button>
+          <button class="thumbnail-btn bg-gray-100 rounded-sm overflow-hidden aspect-square border-2 border-transparent hover:border-gray-500 transition-colors">
+            <img src="https://picsum.photos/200/200?random=2" alt="Miniature 2" class="w-full h-full object-cover" />
+          </button>
+          <button class="thumbnail-btn bg-gray-100 rounded-sm overflow-hidden aspect-square border-2 border-transparent hover:border-gray-500 transition-colors">
+            <img src="https://picsum.photos/200/200?random=3" alt="Miniature 3" class="w-full h-full object-cover" />
+          </button>
+          <button class="thumbnail-btn bg-gray-100 rounded-sm overflow-hidden aspect-square border-2 border-transparent hover:border-gray-500 transition-colors">
+            <img src="https://picsum.photos/200/200?random=4" alt="Miniature 4" class="w-full h-full object-cover" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Informations du produit - DROITE -->
+      <div class="flex flex-col">
+        <!-- En-tête -->
+        <div class="space-y-4 mb-6">
+          <!-- Badges -->
+          <div class="flex gap-2 flex-wrap">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">✓ En stock</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">Première commande</span>
+          </div>
+
+          <!-- Titre et catégorie -->
+          <div>
+            <p class="text-sm text-gray-600 mb-2 uppercase tracking-wide" id="product-category">Décoration</p>
+            <h1 id="product-name" class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Nom du produit</h1>
+            <p id="product-short-description" class="text-gray-600">Courte description du produit</p>
+          </div>
+
+          <!-- Prix -->
+          <div class="flex items-baseline gap-3">
+            <span id="product-price" class="text-3xl font-bold text-gray-900">0,00 €</span>
+            <span id="product-old-price" class="text-xl text-gray-400 line-through hidden">0,00 €</span>
+          </div>
+          <p class="text-sm text-gray-500">TVA incluse · Expédition calculée lors du paiement</p>
+        </div>
+
+        <!-- Options de sélection -->
+        <div class="space-y-6 mb-8">
+          <!-- Variantes (couleurs, tailles, etc.) -->
+          <div id="variants-section" class="hidden">
+            <label class="block text-sm font-semibold text-gray-900 mb-3">Variante</label>
+            <div class="flex gap-2 flex-wrap">
+              <button class="variant-btn px-4 py-2 border-2 border-gray-300 rounded hover:border-gray-900 transition-colors">Option 1</button>
+              <button class="variant-btn px-4 py-2 border-2 border-gray-300 rounded hover:border-gray-900 transition-colors">Option 2</button>
+            </div>
+          </div>
+
+          <!-- Quantité -->
+          <div>
+            <label for="quantity" class="block text-sm font-semibold text-gray-900 mb-3">Quantité</label>
+            <div class="flex items-center gap-3">
+              <button id="quantity-decrease" class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 transition-colors" aria-label="Diminuer la quantité">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                </svg>
+              </button>
+              <input
+                type="number"
+                id="quantity"
+                value="1"
+                min="1"
+                max="10"
+                class="w-20 h-10 text-center border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900"
+                aria-label="Quantité"
+              />
+              <button id="quantity-increase" class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 transition-colors" aria-label="Augmenter la quantité">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+              </button>
+              <span id="stock-info" class="text-sm text-gray-600 ml-2">(10 disponibles)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="space-y-3 mb-8">
+          <button id="add-to-cart-btn" class="w-full bg-black text-white py-4 rounded font-semibold hover:bg-gray-800 transition-colors text-lg">Ajouter au panier</button>
+          <button class="w-full border-2 border-gray-900 text-gray-900 py-4 rounded font-semibold hover:bg-gray-50 transition-colors">Acheter maintenant</button>
+        </div>
+
+        <!-- Informations de livraison -->
+        <div class="border-t border-gray-200 pt-6 space-y-4">
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-gray-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+            </svg>
+            <div>
+              <h3 class="font-semibold text-gray-900">Livraison gratuite</h3>
+              <p class="text-sm text-gray-600">Sur toutes les commandes de L'atelier C</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-gray-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <div>
+              <h3 class="font-semibold text-gray-900">Expédition rapide</h3>
+              <p class="text-sm text-gray-600">Livraison estimée : <span id="delivery-date">10 - 18 déc.</span></p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-gray-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              />
+            </svg>
+            <div>
+              <h3 class="font-semibold text-gray-900">Retours faciles</h3>
+              <p class="text-sm text-gray-600">Retour gratuit sous 30 jours</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description détaillée et caractéristiques -->
+    <div class="mt-16 border-t border-gray-200 pt-16">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Description -->
+        <div class="lg:col-span-2">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Description</h2>
+          <div id="product-description" class="prose prose-gray max-w-none text-gray-600 leading-relaxed">
+            <p>Chargement de la description...</p>
+          </div>
+        </div>
+
+        <!-- Caractéristiques -->
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Caractéristiques</h2>
+          <dl class="space-y-4">
+            <div>
+              <dt class="text-sm font-semibold text-gray-900">Dimensions</dt>
+              <dd id="product-dimensions" class="text-sm text-gray-600 mt-1">-</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-gray-900">Matière</dt>
+              <dd id="product-material" class="text-sm text-gray-600 mt-1">Céramique artisanale</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-gray-900">Fabrication</dt>
+              <dd id="product-origin" class="text-sm text-gray-600 mt-1">Fait main en France</dd>
+            </div>
+            <div>
+              <dt class="text-sm font-semibold text-gray-900">Entretien</dt>
+              <dd id="product-care" class="text-sm text-gray-600 mt-1">Lavage à la main recommandé</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produits recommandés -->
+    <div class="mt-16 border-t border-gray-200 pt-16">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Vous aimerez aussi</h2>
+      <div id="recommended-products" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Les produits recommandés seront chargés dynamiquement -->
+
+    </div>
+  </section>
+</div>
+
+<!-- Script pour gérer les interactions -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const productId = "{{ product_id }}";
+
+    // Charger les données du produit
+    loadProductData(productId);
+
+    // Gestion de la quantité
+    const quantityInput = document.getElementById("quantity");
+    const decreaseBtn = document.getElementById("quantity-decrease");
+    const increaseBtn = document.getElementById("quantity-increase");
+
+    decreaseBtn.addEventListener("click", () => {
+      const currentValue = parseInt(quantityInput.value);
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+
+    increaseBtn.addEventListener("click", () => {
+      const currentValue = parseInt(quantityInput.value);
+      const maxValue = parseInt(quantityInput.max);
+      if (currentValue < maxValue) {
+        quantityInput.value = currentValue + 1;
+      }
+    });
+
+    // Gestion des miniatures
+    const thumbnails = document.querySelectorAll(".thumbnail-btn");
+    const mainImage = document.getElementById("main-image");
+
+    thumbnails.forEach((thumbnail, index) => {
+      thumbnail.addEventListener("click", () => {
+        // Retirer la bordure de toutes les miniatures
+        thumbnails.forEach((t) => t.classList.remove("border-gray-900"));
+        thumbnails.forEach((t) => t.classList.add("border-transparent"));
+
+        // Ajouter la bordure à la miniature sélectionnée
+        thumbnail.classList.remove("border-transparent");
+        thumbnail.classList.add("border-gray-900");
+
+        // Changer l'image principale
+        const img = thumbnail.querySelector("img");
+        mainImage.src = img.src;
+      });
+    });
+
+    // Ajouter au panier
+    const addToCartBtn = document.getElementById("add-to-cart-btn");
+    addToCartBtn.addEventListener("click", async () => {
+      const quantity = parseInt(quantityInput.value);
+
+      // Animation du bouton
+      addToCartBtn.textContent = "Ajouté ! ✓";
+      addToCartBtn.classList.add("bg-green-600");
+      addToCartBtn.classList.remove("bg-black");
+
+      // TODO: Appeler l'API pour ajouter au panier
+      console.log(`Ajout au panier: ${productId}, quantité: ${quantity}`);
+
+      // Réinitialiser le bouton après 2 secondes
+      setTimeout(() => {
+        addToCartBtn.textContent = "Ajouter au panier";
+        addToCartBtn.classList.remove("bg-green-600");
+        addToCartBtn.classList.add("bg-black");
+      }, 2000);
+    });
+
+    // Gestion des favoris
+    const favoriteBtn = document.getElementById("favorite-btn");
+    let isFavorite = false;
+
+    favoriteBtn.addEventListener("click", () => {
+      isFavorite = !isFavorite;
+      const svg = favoriteBtn.querySelector("svg");
+
+      if (isFavorite) {
+        svg.setAttribute("fill", "currentColor");
+        svg.classList.add("text-red-500");
+        // TODO: Appeler l'API pour ajouter aux favoris
+      } else {
+        svg.setAttribute("fill", "none");
+        svg.classList.remove("text-red-500");
+        // TODO: Appeler l'API pour retirer des favoris
+      }
+    });
+
+    // Fonction pour charger les données du produit depuis l'API
+    async function loadProductData(id) {
+      try {
+        const response = await fetch(`/api/products/${id}`);
+        if (!response.ok) {
+          throw new Error("Produit non trouvé");
+        }
+
+        const product = await response.json();
+
+        // Mettre à jour les éléments de la page
+        document.getElementById("product-name").textContent = product.name;
+        document.getElementById("product-category").textContent = product.category;
+        document.getElementById("product-short-description").textContent = product.short_description || "";
+        document.getElementById("product-description").innerHTML = `<p>${product.description}</p>`;
+        document.getElementById("product-price").textContent = `${product.price.toFixed(2)} €`;
+        document.title = `${product.name} - Maison Manoé`;
+        document.getElementById("breadcrumb-product").textContent = product.name;
+
+        // Dimensions
+        if (product.width && product.height && product.depth) {
+          document.getElementById("product-dimensions").textContent = `L ${product.width}cm × H ${product.height}cm × P ${product.depth}cm`;
+        }
+
+        // Stock
+        document.getElementById("stock-info").textContent = `(${product.stock} disponibles)`;
+        quantityInput.max = product.stock;
+
+        // Image principale
+        if (product.main_image) {
+          mainImage.src = product.main_image;
+        }
+
+        // Images supplémentaires
+        if (product.additional_images && product.additional_images.length > 0) {
+          const thumbnailsContainer = document.querySelector(".grid.grid-cols-4");
+          thumbnailsContainer.innerHTML = "";
+
+          // Ajouter l'image principale comme première miniature
+          const mainThumb = createThumbnail(product.main_image || mainImage.src, "Image principale", true);
+          thumbnailsContainer.appendChild(mainThumb);
+
+          // Ajouter les images supplémentaires
+          product.additional_images.forEach((img, index) => {
+            const thumb = createThumbnail(img, `Image ${index + 2}`, false);
+            thumbnailsContainer.appendChild(thumb);
+          });
+        }
+      } catch (error) {
+        console.error("Erreur lors du chargement du produit:", error);
+        document.getElementById("product-name").textContent = "Produit non trouvé";
+        document.getElementById("product-description").innerHTML = "<p class=\"text-red-600\">Ce produit n'existe pas ou n'est plus disponible.</p>";
+      }
+    }
+
+    function createThumbnail(src, alt, isActive) {
+      const button = document.createElement("button");
+      button.className = `thumbnail-btn bg-gray-100 rounded-sm overflow-hidden aspect-square border-2 ${isActive ? "border-gray-900" : "border-transparent"} hover:border-gray-500 transition-colors`;
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = alt;
+      img.className = "w-full h-full object-cover";
+
+      button.appendChild(img);
+
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".thumbnail-btn").forEach((t) => {
+          t.classList.remove("border-gray-900");
+          t.classList.add("border-transparent");
+        });
+        button.classList.remove("border-transparent");
+        button.classList.add("border-gray-900");
+        mainImage.src = src;
+      });
+
+      return button;
+    }
+    
+    // Charger les produits recommandés
+    async function loadRecommendedProducts(currentProductId) {
+      try {
+        const response = await fetch('/api/products?status=online&limit=8');
+        if (response.ok) {
+          const products = await response.json();
+          // Filtrer pour exclure le produit actuel
+          const recommended = products.filter(p => p.id !== currentProductId).slice(0, 4);
+          displayRecommendedProducts(recommended);
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement des produits recommandés:', error);
+      }
+    }
+    
+    function displayRecommendedProducts(products) {
+      const container = document.getElementById('recommended-products');
+      if (!container) return;
+      
+      container.innerHTML = products.map(product => {
+        const imageUrl = product.main_image || `https://picsum.photos/300/300`;
+        const price = parseFloat(product.price).toFixed(2);
+        
+        return `
+          <a href="/produit/${product.id}" class="group block">
+            <div class="relative bg-gray-100 rounded-sm overflow-hidden aspect-square mb-3">
+              <img 
+                src="${imageUrl}" 
+                alt="${product.name}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                onerror="this.src='https://picsum.photos/300/300'"
+              />
+            </div>
+            <h3 class="text-sm font-semibold text-gray-900 mb-1 line-clamp-2">${product.name}</h3>
+            <p class="text-sm font-bold text-gray-900">${price} €</p>
+          </a>
+        `;
+      }).join('');
+    }
+    
+    // Charger les produits recommandés après le chargement du produit
+    loadRecommendedProducts(productId);
+  });
+</script>
+{% endblock %}

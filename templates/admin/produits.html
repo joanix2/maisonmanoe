@@ -44,83 +44,10 @@
 
 <!-- Liste des produits en grille -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="products-grid">
-  <!-- Produit 1 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer product-card" data-product-id="1">
-    <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=400" alt="Vase céramique" class="w-full h-full object-cover" />
-    </div>
-    <div class="p-3 md:p-4">
-      <div class="flex items-start justify-between mb-2 gap-2">
-        <h3 class="text-sm md:text-base font-semibold text-gray-900">Vase céramique artisanal</h3>
-        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 flex-shrink-0">En ligne</span>
-      </div>
-      <p class="text-xs md:text-sm text-gray-500 mb-2 md:mb-3">Décoration</p>
-      <div class="flex items-center justify-between">
-        <span class="text-base md:text-lg font-bold text-gray-900">45,00 €</span>
-        <span class="text-xs md:text-sm text-gray-600">Stock: 12</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Produit 2 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer product-card" data-product-id="2">
-    <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1602874801006-c8f8f5f0e42f?w=400" alt="Bougie" class="w-full h-full object-cover" />
-    </div>
-    <div class="p-3 md:p-4">
-      <div class="flex items-start justify-between mb-2 gap-2">
-        <h3 class="text-sm md:text-base font-semibold text-gray-900">Bougie parfumée artisanale</h3>
-        <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 flex-shrink-0">En ligne</span>
-      </div>
-      <p class="text-xs md:text-sm text-gray-500 mb-2 md:mb-3">Décoration</p>
-      <div class="flex items-center justify-between">
-        <span class="text-base md:text-lg font-bold text-gray-900">28,00 €</span>
-        <span class="text-xs md:text-sm text-gray-600">Stock: 24</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Produit 3 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer product-card" data-product-id="3">
-    <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1566301363515-d0e24e8a5ef7?w=400" alt="Coussin" class="w-full h-full object-cover" />
-    </div>
-    <div class="p-4">
-      <div class="flex items-start justify-between mb-2">
-        <h3 class="font-semibold text-gray-900">Coussin en lin naturel</h3>
-        <span class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">Stock bas</span>
-      </div>
-      <p class="text-sm text-gray-500 mb-3">Textile</p>
-      <div class="flex items-center justify-between">
-        <span class="text-lg font-bold text-gray-900">35,00 €</span>
-        <span class="text-sm text-red-600">Stock: 2</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Produit 4 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer product-card" data-product-id="4">
-    <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden flex items-center justify-center">
-      <svg class="w-20 h-20 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-        />
-      </svg>
-    </div>
-    <div class="p-4">
-      <div class="flex items-start justify-between mb-2">
-        <h3 class="font-semibold text-gray-900">Lampe de table moderne</h3>
-        <span class="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800">Brouillon</span>
-      </div>
-      <p class="text-sm text-gray-500 mb-3">Luminaires</p>
-      <div class="flex items-center justify-between">
-        <span class="text-lg font-bold text-gray-900">89,00 €</span>
-        <span class="text-sm text-gray-600">Stock: 8</span>
-      </div>
-    </div>
+  <!-- Les produits seront chargés dynamiquement depuis l'API -->
+  <div class="col-span-full text-center py-12">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+    <p class="text-gray-600">Chargement des produits...</p>
   </div>
 </div>
 
@@ -293,6 +220,10 @@
 </div>
 {% endblock %} {% block extra_scripts %}
 <script>
+  // État global
+  let currentProductId = null;
+  let allProducts = [];
+
   // Modal management
   const modal = document.getElementById("product-modal");
   const modalTitle = document.getElementById("modal-title");
@@ -300,30 +231,166 @@
   const closeModalBtn = document.getElementById("close-modal");
   const cancelBtn = document.getElementById("cancel-btn");
 
+  // Charger les produits au démarrage
+  document.addEventListener("DOMContentLoaded", () => {
+    loadProducts();
+  });
+
+  // Charger tous les produits depuis l'API
+  async function loadProducts() {
+    try {
+      const response = await fetch("/api/products?limit=100");
+      if (!response.ok) throw new Error("Erreur lors du chargement des produits");
+
+      allProducts = await response.json();
+      displayProducts(allProducts);
+    } catch (error) {
+      console.error("Erreur:", error);
+      alert("Impossible de charger les produits. Vérifiez que le serveur est démarré.");
+    }
+  }
+
+  // Afficher les produits dans la grille
+  function displayProducts(products) {
+    const grid = document.getElementById("products-grid");
+
+    if (products.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+          </svg>
+          <p class="text-gray-600 text-lg mb-4">Aucun produit pour le moment</p>
+          <button onclick="document.getElementById('create-product-btn').click()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            Créer votre premier produit
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = products.map((product) => createProductCard(product)).join("");
+
+    // Ajouter les événements de clic
+    document.querySelectorAll(".product-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const productId = card.dataset.productId;
+        openEditModal(productId);
+      });
+    });
+  }
+
+  // Créer une carte produit
+  function createProductCard(product) {
+    const statusColors = {
+      online: "bg-green-100 text-green-800",
+      draft: "bg-gray-100 text-gray-800",
+      "out-of-stock": "bg-red-100 text-red-800",
+    };
+
+    const statusLabels = {
+      online: "En ligne",
+      draft: "Brouillon",
+      "out-of-stock": "Rupture de stock",
+    };
+
+    const stockColor = product.stock < 5 ? "text-red-600" : "text-gray-600";
+    const imageUrl = product.main_image || "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=400";
+
+    return `
+      <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer product-card" data-product-id="${product.id}">
+        <div class="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
+          <img src="${imageUrl}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=400'" />
+        </div>
+        <div class="p-3 md:p-4">
+          <div class="flex items-start justify-between mb-2 gap-2">
+            <h3 class="text-sm md:text-base font-semibold text-gray-900 line-clamp-2">${product.name}</h3>
+            <span class="px-2 py-1 text-xs font-medium rounded-full ${statusColors[product.status]} flex-shrink-0">
+              ${statusLabels[product.status]}
+            </span>
+          </div>
+          <p class="text-xs md:text-sm text-gray-500 mb-2 md:mb-3">${product.category}</p>
+          <div class="flex items-center justify-between">
+            <span class="text-base md:text-lg font-bold text-gray-900">${parseFloat(product.price).toFixed(2)} €</span>
+            <span class="text-xs md:text-sm ${stockColor}">Stock: ${product.stock}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   // Open modal for new product
   createBtn.addEventListener("click", () => {
+    currentProductId = null;
     modalTitle.textContent = "Nouveau produit";
     document.getElementById("product-form").reset();
     document.getElementById("delete-product-btn").classList.add("hidden");
+    clearImagePreviews();
     modal.classList.remove("hidden");
   });
 
-  // Open modal for existing product
-  document.querySelectorAll(".product-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      const productId = card.dataset.productId;
-      modalTitle.textContent = "Modifier le produit";
-      document.getElementById("delete-product-btn").classList.remove("hidden");
+  // Ouvrir le modal pour éditer un produit
+  async function openEditModal(productId) {
+    currentProductId = productId;
+    modalTitle.textContent = "Modifier le produit";
+    document.getElementById("delete-product-btn").classList.remove("hidden");
 
-      // TODO: Load product data
-      // For now, just open modal
+    try {
+      const response = await fetch(`/api/products/${productId}`);
+      if (!response.ok) throw new Error("Produit non trouvé");
+
+      const product = await response.json();
+      fillFormWithProduct(product);
       modal.classList.remove("hidden");
-    });
-  });
+    } catch (error) {
+      console.error("Erreur:", error);
+      alert("Impossible de charger le produit");
+    }
+  }
+
+  // Remplir le formulaire avec les données d'un produit
+  function fillFormWithProduct(product) {
+    document.getElementById("product-name").value = product.name || "";
+    document.getElementById("product-category").value = product.category || "";
+    document.getElementById("product-price").value = product.price || "";
+    document.getElementById("product-stock").value = product.stock || "";
+    document.getElementById("product-short-desc").value = product.short_description || "";
+    document.getElementById("product-description").value = product.description || "";
+    document.getElementById("product-width").value = product.width || "";
+    document.getElementById("product-height").value = product.height || "";
+    document.getElementById("product-depth").value = product.depth || "";
+    document.getElementById("product-status").value = product.status || "draft";
+
+    // Afficher l'image principale si elle existe
+    if (product.main_image) {
+      const mainImagePreview = document.getElementById("main-image-preview");
+      const mainImagePlaceholder = document.getElementById("main-image-placeholder");
+      mainImagePreview.querySelector("img").src = product.main_image;
+      mainImagePreview.classList.remove("hidden");
+      mainImagePlaceholder.classList.add("hidden");
+    }
+
+    // TODO: Afficher les images additionnelles
+  }
 
   function closeModal() {
     modal.classList.add("hidden");
     document.getElementById("product-form").reset();
+    clearImagePreviews();
+    currentProductId = null;
+  }
+
+  function clearImagePreviews() {
+    const mainImagePreview = document.getElementById("main-image-preview");
+    const mainImagePlaceholder = document.getElementById("main-image-placeholder");
+    mainImagePreview.classList.add("hidden");
+    mainImagePlaceholder.classList.remove("hidden");
+
+    // Supprimer les images additionnelles sauf le bouton d'ajout
+    const container = document.getElementById("additional-images");
+    const addBtn = document.getElementById("add-image-btn");
+    container.innerHTML = "";
+    container.appendChild(addBtn);
   }
 
   closeModalBtn.addEventListener("click", closeModal);
@@ -395,46 +462,139 @@
   });
 
   // Form submission
-  document.getElementById("product-form").addEventListener("submit", function (e) {
+  document.getElementById("product-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const formData = {
-      name: document.getElementById("product-name").value,
-      category: document.getElementById("product-category").value,
-      price: document.getElementById("product-price").value,
-      stock: document.getElementById("product-stock").value,
-      shortDesc: document.getElementById("product-short-desc").value,
-      description: document.getElementById("product-description").value,
-      width: document.getElementById("product-width").value,
-      height: document.getElementById("product-height").value,
-      depth: document.getElementById("product-depth").value,
-      status: document.getElementById("product-status").value,
-    };
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Enregistrement...";
 
-    // Simulate API call
-    console.log("Saving product:", formData);
+    try {
+      const productData = {
+        name: document.getElementById("product-name").value,
+        category: document.getElementById("product-category").value,
+        price: parseFloat(document.getElementById("product-price").value),
+        stock: parseInt(document.getElementById("product-stock").value),
+        short_description: document.getElementById("product-short-desc").value || null,
+        description: document.getElementById("product-description").value,
+        width: parseFloat(document.getElementById("product-width").value) || null,
+        height: parseFloat(document.getElementById("product-height").value) || null,
+        depth: parseFloat(document.getElementById("product-depth").value) || null,
+        status: document.getElementById("product-status").value,
+        // TODO: Gérer l'upload d'images
+        main_image: null,
+        additional_images: [],
+      };
 
-    alert("Produit enregistré avec succès !");
-    closeModal();
+      let response;
+      if (currentProductId) {
+        // Mise à jour
+        response = await fetch(`/api/products/${currentProductId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productData),
+        });
+      } else {
+        // Création
+        response = await fetch("/api/products", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productData),
+        });
+      }
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.detail || "Erreur lors de l'enregistrement");
+      }
+
+      const savedProduct = await response.json();
+      console.log("Produit enregistré:", savedProduct);
+
+      // Afficher un message de succès
+      showNotification("Produit enregistré avec succès !", "success");
+
+      // Recharger la liste des produits
+      await loadProducts();
+
+      closeModal();
+    } catch (error) {
+      console.error("Erreur:", error);
+      showNotification(error.message || "Erreur lors de l'enregistrement", "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
   });
 
   // Delete product
-  document.getElementById("delete-product-btn").addEventListener("click", function () {
-    if (confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")) {
-      // Simulate API call
-      console.log("Deleting product");
-      alert("Produit supprimé !");
+  document.getElementById("delete-product-btn").addEventListener("click", async function () {
+    if (!currentProductId) return;
+
+    if (!confirm("Êtes-vous sûr de vouloir supprimer ce produit ? Cette action est irréversible.")) {
+      return;
+    }
+
+    const deleteBtn = this;
+    const originalText = deleteBtn.textContent;
+    deleteBtn.disabled = true;
+    deleteBtn.textContent = "Suppression...";
+
+    try {
+      const response = await fetch(`/api/products/${currentProductId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de la suppression");
+      }
+
+      showNotification("Produit supprimé avec succès !", "success");
+      await loadProducts();
       closeModal();
+    } catch (error) {
+      console.error("Erreur:", error);
+      showNotification("Erreur lors de la suppression", "error");
+      deleteBtn.disabled = false;
+      deleteBtn.textContent = originalText;
     }
   });
 
   // Search
   document.getElementById("search-products").addEventListener("input", function (e) {
     const search = e.target.value.toLowerCase();
-    document.querySelectorAll(".product-card").forEach((card) => {
-      const text = card.textContent.toLowerCase();
-      card.style.display = text.includes(search) ? "" : "none";
-    });
+    const filteredProducts = allProducts.filter(
+      (product) => product.name.toLowerCase().includes(search) || product.category.toLowerCase().includes(search) || product.description.toLowerCase().includes(search)
+    );
+    displayProducts(filteredProducts);
   });
+
+  // Fonction pour afficher des notifications
+  function showNotification(message, type = "info") {
+    // Créer une notification toast
+    const notification = document.createElement("div");
+    notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg text-white transform transition-all duration-300 ${
+      type === "success" ? "bg-green-600" : type === "error" ? "bg-red-600" : "bg-blue-600"
+    }`;
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    // Animer l'entrée
+    setTimeout(() => {
+      notification.style.transform = "translateX(0)";
+    }, 10);
+
+    // Retirer après 3 secondes
+    setTimeout(() => {
+      notification.style.transform = "translateX(400px)";
+      setTimeout(() => notification.remove(), 300);
+    }, 3000);
+  }
 </script>
 {% endblock %}
