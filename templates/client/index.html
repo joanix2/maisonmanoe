@@ -2,12 +2,12 @@
 Pièces authentiques fabriquées à la main par des artisans passionnés.{% endblock %} {% block content %}
 <!-- SECTION HERO - Bannière principale avec image de fond -->
 <section class="relative h-[80vh] bg-cover bg-center flex items-center justify-center text-white text-center" style="background-image: url('https://picsum.photos/1920/1080')" role="banner">
-  <!-- Menu overlay en haut à gauche -->
-  <div class="absolute top-8 left-8 z-20">
-    <nav class="flex gap-6" aria-label="Navigation produits">
-      <a href="/recherche" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-lg drop-shadow-lg">produits</a>
-      <a href="/recherche?filter=nouveautes" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-lg drop-shadow-lg">nouveautés</a>
-      <a href="/recherche?filter=promotions" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-lg drop-shadow-lg">promotions</a>
+  <!-- Menu overlay - centré sur mobile, haut gauche sur desktop -->
+  <div class="absolute top-8 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0 z-20">
+    <nav class="flex gap-4 md:gap-6" aria-label="Navigation produits">
+      <a href="/recherche" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-base md:text-lg drop-shadow-lg">produits</a>
+      <a href="/recherche?filter=nouveautes" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-base md:text-lg drop-shadow-lg">nouveautés</a>
+      <a href="/recherche?filter=promotions" class="lowercase font-medium text-white hover:text-maison-beige transition-colors text-base md:text-lg drop-shadow-lg">promotions</a>
     </nav>
   </div>
 
@@ -26,7 +26,7 @@ Pièces authentiques fabriquées à la main par des artisans passionnés.{% endb
     <!-- Produit principal mis en avant - GAUCHE -->
     <div class="relative group bg-white">
       <div class="relative overflow-hidden rounded-sm">
-        <img src="https://picsum.photos/600/700" alt="Produit vedette" class="w-full h-[728px] object-cover" />
+        <img src="https://picsum.photos/600/700" alt="Produit vedette" class="w-full h-[300px] lg:h-[728px] object-cover" />
         <button class="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors" aria-label="Ajouter aux favoris">
           <svg class="w-6 h-6 text-gray-700 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
